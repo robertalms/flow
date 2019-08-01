@@ -61,8 +61,7 @@ net_params = NetParams(
                  os.path.join(UC5_dir, "vTypesCVToC_OS.add.xml"),
                  os.path.join(UC5_dir, "vTypesCAVToC_OS.add.xml")
                 ]
-    },
-    no_internal_links=True
+    }
 )
     
 initial_config = InitialConfig(
