@@ -107,7 +107,7 @@ class Env(*classdef):
         is set to True or False.
     """
 
-    def __init__(self, env_params, sim_params, scenario, simulator='traci'):
+    def __init__(self, env_params, sim_params, scenario, simulator='traci', stepListener=[]):
         """Initialize the environment class.
 
         Parameters
@@ -158,7 +158,7 @@ class Env(*classdef):
 
         # create the Flow kernel
         self.k = Kernel(simulator=self.simulator,
-                        sim_params=sim_params)
+                        sim_params=sim_params, stepListener=stepListener)
 
         # use the scenario class's network parameters to generate the necessary
         # scenario components within the scenario kernel
@@ -370,8 +370,8 @@ class Env(*classdef):
             self.k.update(reset=False)
 
             # update the colors of vehicles
-            if self.sim_params.render:
-                self.k.vehicle.update_vehicle_colors()
+#             if self.sim_params.render:
+#                 self.k.vehicle.update_vehicle_colors()
 
             # crash encodes whether the simulator experienced a collision
             crash = self.k.simulation.check_collision()

@@ -118,13 +118,14 @@ class Experiment:
             state = self.env.reset()
             for j in range(num_steps):
                 state, reward, done, _ = self.env.step(rl_actions(state))
-                vel[j] = np.mean(
-                    self.env.k.vehicle.get_speed(self.env.k.vehicle.get_ids()))
-                ret += reward
-                ret_list.append(reward)
-
-                if done:
-                    break
+                if j>100:
+                    vel[j] = np.mean(
+                        self.env.k.vehicle.get_speed(self.env.k.vehicle.get_ids()))
+                    ret += reward
+                    ret_list.append(reward)
+    
+                    if done:
+                        break
             rets.append(ret)
             vels.append(vel)
             mean_rets.append(np.mean(ret_list))

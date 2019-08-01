@@ -1,7 +1,7 @@
 """Script containing the Flow kernel object for interacting with simulators."""
 
 from flow.core.kernel.simulation import TraCISimulation, AimsunKernelSimulation
-from flow.core.kernel.scenario import TraCIScenario, AimsunKernelScenario
+from flow.core.kernel.scenario import TraCIScenario, AimsunKernelScenario, NewTraCIScenario
 from flow.core.kernel.vehicle import TraCIVehicle, AimsunKernelVehicle
 from flow.core.kernel.traffic_light import TraCITrafficLight, \
     AimsunKernelTrafficLight
@@ -44,7 +44,7 @@ class Kernel(object):
     traffic simulators, e.g. SUMO, AIMSUN, TruckSim, etc...
     """
 
-    def __init__(self, simulator, sim_params):
+    def __init__(self, simulator, sim_params, stepListener=[]):
         """Instantiate a Flow kernel object.
 
         Parameters
@@ -71,6 +71,12 @@ class Kernel(object):
             self.scenario = AimsunKernelScenario(self, sim_params)
             self.vehicle = AimsunKernelVehicle(self, sim_params)
             self.traffic_light = AimsunKernelTrafficLight(self)
+        elif simulator == 'newtraci':
+            self.simulation = TraCISimulation(self)
+            self.scenario = NewTraCIScenario(self, sim_params)
+            self.vehicle = TraCIVehicle(self, sim_params)
+            self.traffic_light = TraCITrafficLight(self)
+            self.step_listener = stepListener
         else:
             raise FatalFlowError('Simulator type "{}" is not valid.'.
                                  format(simulator))

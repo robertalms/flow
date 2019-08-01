@@ -361,7 +361,24 @@ class Scenario(Serializable):
         # this is to be used if file paths other than the the network geometry
         # file is specified
         elif type(net_params.template) is dict:
-            if 'rou' in net_params.template:
+            if 'vtype' in net_params.template:
+                veh, rou = self._vehicle_infos(net_params.template['vtype'])
+                vtypes = self._vehicle_type(net_params.template.get('vtype'))
+                dist = self._vehicle_type_distribution(net_params.template.get('vtype'))
+                cf = self._get_cf_params(vtypes)
+                lc = self._get_lc_params(vtypes)
+
+                # add the vehicle types to the VehicleParams object
+                for t in vtypes:
+                    vehicles.add(veh_id=t, car_following_params=cf[t],
+                                 lane_change_params=lc[t], num_vehicles=0)
+
+                # vehicles to be added with different departure times
+                self.template_vehicles = veh
+                self.template_vehicles_dist = dist
+                
+
+            elif 'rou' in net_params.template:
                 veh, rou = self._vehicle_infos(net_params.template['rou'])
 
                 vtypes = self._vehicle_type(net_params.template.get('vtype'))
@@ -738,7 +755,7 @@ class Scenario(Serializable):
         return vehicle_data, routes_data
 
     @staticmethod
-    def _vehicle_type(filename):
+    def _vehicle_type(files):
         """Import vehicle type data from a *.add.xml file.
 
         This is a utility function for outputting all the type of vehicle.
@@ -755,36 +772,100 @@ class Scenario(Serializable):
             of the vehicle, depart edges, depart Speed, departPos. If no
             filename is provided, this method returns None as well.
         """
-        if filename is None:
-            return None
-
-        parser = etree.XMLParser(recover=True)
-        tree = ElementTree.parse(filename, parser=parser)
-
-        root = tree.getroot()
+        
         veh_type = {}
-
-        # this hack is meant to support the LuST scenario and Flow scenarios
-        root = [root] if len(root.findall('vTypeDistribution')) == 0 \
-            else root.findall('vTypeDistribution')
-
-        for r in root:
-            for vtype in r.findall('vType'):
-                # TODO: make for everything
-                veh_type[vtype.attrib['id']] = {
-                    'vClass': vtype.attrib.get('vClass', DEFAULT_VCLASS),
-                    'accel': vtype.attrib['accel'],
-                    'decel': vtype.attrib['decel'],
-                    'sigma': vtype.attrib['sigma'],
-                    'length': vtype.attrib.get('length', DEFAULT_LENGTH),
-                    'minGap': vtype.attrib['minGap'],
-                    'maxSpeed': vtype.attrib['maxSpeed'],
-                    'probability': vtype.attrib.get(
-                        'probability', DEFAULT_PROBABILITY),
-                    'speedDev': vtype.attrib['speedDev']
-                }
+        for filename in files:
+            if filename is None:
+#                 return None
+                continue
+    
+            parser = etree.XMLParser(recover=True)
+            tree = ElementTree.parse(filename, parser=parser)
+    
+            root = tree.getroot()
+    
+            # this hack is meant to support the LuST scenario and Flow scenarios
+            root = [root] if len(root.findall('vTypeDistribution')) == 0 \
+                else root.findall('vTypeDistribution')
+            
+            for r in root:
+                
+                for vtype in r.findall('vType'):
+                    # TODO: make for everything
+                    vtypeID = vtype.attrib['id']
+                    attributes = {}
+                    for attribute in vtype.attrib:
+                        attributes[attribute] = vtype.attrib[attribute]
+                    attributes['length'] = vtype.attrib.get('length', DEFAULT_LENGTH)
+                    attributes['probability'] = vtype.attrib.get('probability', DEFAULT_PROBABILITY)
+                    attributes['sigma'] = vtype.attrib.get('sigma', str(1.0))
+                    veh_type[vtypeID] = attributes
+#                     veh_type[vtype.attrib['id']] = {
+#                         'vClass': vtype.attrib.get('vClass', DEFAULT_VCLASS),
+#                         'accel': vtype.attrib['accel'],
+#                         'decel': vtype.attrib['decel'],
+#                         'sigma': vtype.attrib['sigma'],
+#                         'length': vtype.attrib.get('length', DEFAULT_LENGTH),
+#     #                     'minGap': vtype.attrib['minGap'],
+#     #                     'maxSpeed': vtype.attrib['maxSpeed'],
+#                         'probability': vtype.attrib.get(
+#                             'probability', DEFAULT_PROBABILITY),
+#     #                     'speedDev': vtype.attrib['speedDev']
+#                     }
 
         return veh_type
+
+    @staticmethod
+    def _vehicle_type_distribution(files):
+
+        veh_type_distributions = {}        
+        for filename in files:
+            if filename is None:
+                continue
+    
+            parser = etree.XMLParser(recover=True)
+            tree = ElementTree.parse(filename, parser=parser)
+    
+            root = tree.getroot()
+    
+            # this hack is meant to support the LuST scenario and Flow scenarios
+    #         root = [root] if len(root.findall('vTypeDistribution')) == 0 \
+    #             else root.findall('vTypeDistribution')
+    
+            for vtype_dists in root.findall('vTypeDistribution'):
+                veh_type_distribution = {}
+                # TODO: make for everything
+                veh_type_distribution['id'] = vtype_dists.attrib['id']
+                veh_type = {}
+                
+                for vtype in vtype_dists.findall('vType'):
+                    vtypeID = vtype.attrib['id']
+                    attributes = {}
+                    for attribute in vtype.attrib:
+                        attributes[attribute] = vtype.attrib[attribute]
+                    params = {}
+                    for param in vtype.getchildren():
+                        key = param.attrib['key']
+                        value = param.attrib['value']
+                        params[key] = value
+                    veh_type[vtypeID] = (attributes, params)
+                    
+                veh_type_distribution['vTypes'] = veh_type
+                veh_type_distributions[vtype_dists.attrib['id']] = veh_type_distribution
+                        # TODO: make for everything
+    #                     veh_type[vtype.attrib['id']] = {
+                           # 'vClass': vtype.attrib.get('vClass', DEFAULT_VCLASS),
+    #                         'accel': vtype.attrib['accel'],
+    #                         'decel': vtype.attrib['decel'],
+    #                         'sigma': vtype.attrib['sigma'],
+    #                         'length': vtype.attrib.get('length', DEFAULT_LENGTH),
+    #     #                     'minGap': vtype.attrib['minGap'],
+    #     #                     'maxSpeed': vtype.attrib['maxSpeed'],
+    #                         'probability': vtype.attrib.get(
+    #                             'probability', DEFAULT_PROBABILITY),
+        #                     'speedDev': vtype.attrib['speedDev']
+    #                     }
+        return veh_type_distributions
 
     @staticmethod
     def _get_cf_params(vtypes):
@@ -798,10 +879,11 @@ class Scenario(Serializable):
                 decel=float(vtypes[typ]['decel']),
                 sigma=float(vtypes[typ]['sigma']),
                 length=float(vtypes[typ]['length']),
-                min_gap=float(vtypes[typ]['minGap']),
-                max_speed=float(vtypes[typ]['maxSpeed']),
+#                 min_gap=float(vtypes[typ]['minGap']),
+                tau=float(vtypes[typ]['tau']),
+#                 max_speed=float(vtypes[typ]['maxSpeed']),
                 probability=float(vtypes[typ]['probability']),
-                speed_dev=float(vtypes[typ]['speedDev'])
+#                 speed_dev=float(vtypes[typ]['speedDev'])
             )
 
         return ret

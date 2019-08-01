@@ -1,0 +1,1 @@
+sumo-gui -c uc5.sumo.cfg -r routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml -a "additionalsOutput_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml, vTypesCAVToC_OS.add.xml, vTypesCVToC_OS.add.xml, vTypesLV_OS.add.xml"

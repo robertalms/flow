@@ -54,6 +54,7 @@ class TraCISimulation(KernelSimulation):
     def simulation_step(self):
         """See parent class."""
         self.kernel_api.simulationStep()
+        [listener.step(self.master_kernel, self.kernel_api.simulation.getTime()) for listener in self.master_kernel.step_listener]
 
     def update(self, reset):
         """See parent class."""
