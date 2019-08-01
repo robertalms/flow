@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Thu 01 Aug 2019 06:02:59 PM CEST by Eclipse SUMO GUI Version 1.2.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="UC5_1.net.xml"/>
+        <route-files value="routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml"/>
+        <additional-files value="additionalsOutput_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml,%20vTypesCAVToC_OS.add.xml,%20vTypesCVToC_OS.add.xml,%20vTypesLV_OS.add.xml"/>
+    </input>
+
+    <time>
+        <step-length value="0.1"/>
+    </time>
+
+    <processing>
+        <step-method.ballistic value="true"/>
+        <ignore-route-errors value="true"/>
+        <lanechange.duration value="2.5"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <toc_device>
+        <device.toc.ogNewTimeHeadway value="100"/>
+        <device.toc.ogNewSpaceHeadway value="5"/>
+        <device.toc.ogMaxDecel value="1"/>
+        <device.toc.ogChangeRate value="1"/>
+    </toc_device>
+
+    <traci_server>
+        <remote-port value="48086"/>
+    </traci_server>
+
+    <gui_only>
+        <tracker-interval value="0.1"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<meandata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/meandata_file.xsd">
+    <interval begin="0.00" end="108.30" id="emissions">
+        <edge id="e0" sampledSeconds="4078.10" CO_abs="229698.693212" CO2_abs="14980664.174287" HC_abs="1425.009178" PMx_abs="339.049724" NOx_abs="5742.382631" fuel_abs="6439.522328" electricity_abs="0"
+            CO_normed="1590.711172" CO2_normed="103744.211733" HC_normed="9.868485" PMx_normed="2.347990" NOx_normed="39.767193" fuel_normed="44.595030" electricity_normed="0"
+            traveltime="172.89" CO_perVeh="9737.933548" CO2_perVeh="635095.960672" HC_perVeh="60.412380" PMx_perVeh="14.373803" NOx_perVeh="243.444748" fuel_perVeh="272.999553" electricity_perVeh="0"/>
+        <edge id="entry" sampledSeconds="508.04" CO_abs="24738.092663" CO2_abs="1782927.811567" HC_abs="157.015093" PMx_abs="38.616924" NOx_abs="697.849680" fuel_abs="766.399234" electricity_abs="0"
+            CO_normed="4111.594348" CO2_normed="296331.492227" HC_normed="26.096691" PMx_normed="6.418325" NOx_normed="115.986096" fuel_normed="127.379374" electricity_normed="0"
+            traveltime="7.58" CO_perVeh="369.015236" CO2_perVeh="26595.725729" HC_perVeh="2.342176" PMx_perVeh="0.576044" NOx_perVeh="10.409742" fuel_perVeh="11.432288" electricity_perVeh="0"/>
+    </interval>
+</meandata>

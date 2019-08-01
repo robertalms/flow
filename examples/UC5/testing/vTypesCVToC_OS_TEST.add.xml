@@ -1,0 +1,1104 @@
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <vTypeDistribution id="vehCVToCOS">
+        <vType accel="1.362" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.024" emergencyDecel="9.000" id="vehCVToCOS0" lcAssertive="0.557" tau="1.901">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.350"/>
+            <param key="device.toc.recoveryRate" value="0.374"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.035" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.368" emergencyDecel="9.000" id="vehCVToCOS1" lcAssertive="0.434" tau="1.935">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.418"/>
+            <param key="device.toc.recoveryRate" value="0.105"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.810" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.568" emergencyDecel="9.000" id="vehCVToCOS2" lcAssertive="0.594" tau="1.944">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.832"/>
+            <param key="device.toc.recoveryRate" value="0.331"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.643" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.779" emergencyDecel="9.000" id="vehCVToCOS3" lcAssertive="0.587" tau="1.893">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.337"/>
+            <param key="device.toc.recoveryRate" value="0.267"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.721" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.978" emergencyDecel="9.000" id="vehCVToCOS4" lcAssertive="0.465" tau="1.808">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.285"/>
+            <param key="device.toc.recoveryRate" value="0.252"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.333" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.250" emergencyDecel="9.000" id="vehCVToCOS5" lcAssertive="0.426" tau="1.981">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.634"/>
+            <param key="device.toc.recoveryRate" value="0.116"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.906" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.435" emergencyDecel="9.000" id="vehCVToCOS6" lcAssertive="0.478" tau="1.865">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.895"/>
+            <param key="device.toc.recoveryRate" value="0.078"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.247" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.826" emergencyDecel="9.000" id="vehCVToCOS7" lcAssertive="0.404" tau="1.951">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.644"/>
+            <param key="device.toc.recoveryRate" value="0.130"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.320" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.866" emergencyDecel="9.000" id="vehCVToCOS8" lcAssertive="0.534" tau="1.994">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.447"/>
+            <param key="device.toc.recoveryRate" value="0.229"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.984" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.888" emergencyDecel="9.000" id="vehCVToCOS9" lcAssertive="0.543" tau="1.823">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.600"/>
+            <param key="device.toc.recoveryRate" value="0.260"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.921" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.070" emergencyDecel="9.000" id="vehCVToCOS10" lcAssertive="0.473" tau="1.852">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.933"/>
+            <param key="device.toc.recoveryRate" value="0.049"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.969" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.313" emergencyDecel="9.000" id="vehCVToCOS11" lcAssertive="0.479" tau="1.802">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.646"/>
+            <param key="device.toc.recoveryRate" value="0.232"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.808" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.866" emergencyDecel="9.000" id="vehCVToCOS12" lcAssertive="0.452" tau="1.975">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.573"/>
+            <param key="device.toc.recoveryRate" value="0.273"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.904" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.571" emergencyDecel="9.000" id="vehCVToCOS13" lcAssertive="0.537" tau="1.980">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.560"/>
+            <param key="device.toc.recoveryRate" value="0.056"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.921" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.539" emergencyDecel="9.000" id="vehCVToCOS14" lcAssertive="0.445" tau="1.950">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.629"/>
+            <param key="device.toc.recoveryRate" value="0.090"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.214" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.496" emergencyDecel="9.000" id="vehCVToCOS15" lcAssertive="0.487" tau="1.849">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.560"/>
+            <param key="device.toc.recoveryRate" value="0.261"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.104" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.987" emergencyDecel="9.000" id="vehCVToCOS16" lcAssertive="0.503" tau="1.833">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.587"/>
+            <param key="device.toc.recoveryRate" value="0.373"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.800" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.424" emergencyDecel="9.000" id="vehCVToCOS17" lcAssertive="0.508" tau="1.988">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.248"/>
+            <param key="device.toc.recoveryRate" value="0.238"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.318" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.474" emergencyDecel="9.000" id="vehCVToCOS18" lcAssertive="0.445" tau="1.931">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.760"/>
+            <param key="device.toc.recoveryRate" value="0.139"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.303" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.936" emergencyDecel="9.000" id="vehCVToCOS19" lcAssertive="0.522" tau="1.977">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.575"/>
+            <param key="device.toc.recoveryRate" value="0.084"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.037" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.140" emergencyDecel="9.000" id="vehCVToCOS20" lcAssertive="0.548" tau="1.853">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.400"/>
+            <param key="device.toc.recoveryRate" value="0.330"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.516" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.630" emergencyDecel="9.000" id="vehCVToCOS21" lcAssertive="0.513" tau="1.961">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.577"/>
+            <param key="device.toc.recoveryRate" value="0.287"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.286" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.736" emergencyDecel="9.000" id="vehCVToCOS22" lcAssertive="0.548" tau="1.969">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.676"/>
+            <param key="device.toc.recoveryRate" value="0.292"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.974" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.266" emergencyDecel="9.000" id="vehCVToCOS23" lcAssertive="0.509" tau="1.985">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.889"/>
+            <param key="device.toc.recoveryRate" value="0.248"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.901" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.259" emergencyDecel="9.000" id="vehCVToCOS24" lcAssertive="0.431" tau="1.903">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.670"/>
+            <param key="device.toc.recoveryRate" value="0.372"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.821" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.081" emergencyDecel="9.000" id="vehCVToCOS25" lcAssertive="0.539" tau="1.917">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.672"/>
+            <param key="device.toc.recoveryRate" value="0.345"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.865" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.326" emergencyDecel="9.000" id="vehCVToCOS26" lcAssertive="0.523" tau="1.859">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.228"/>
+            <param key="device.toc.recoveryRate" value="0.264"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.086" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.988" emergencyDecel="9.000" id="vehCVToCOS27" lcAssertive="0.459" tau="1.944">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.821"/>
+            <param key="device.toc.recoveryRate" value="0.185"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.109" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.047" emergencyDecel="9.000" id="vehCVToCOS28" lcAssertive="0.489" tau="1.997">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.598"/>
+            <param key="device.toc.recoveryRate" value="0.212"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.148" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.246" emergencyDecel="9.000" id="vehCVToCOS29" lcAssertive="0.510" tau="1.832">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.678"/>
+            <param key="device.toc.recoveryRate" value="0.314"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.479" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.101" emergencyDecel="9.000" id="vehCVToCOS30" lcAssertive="0.520" tau="1.894">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.666"/>
+            <param key="device.toc.recoveryRate" value="0.023"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.199" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.748" emergencyDecel="9.000" id="vehCVToCOS31" lcAssertive="0.443" tau="1.820">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.311"/>
+            <param key="device.toc.recoveryRate" value="0.255"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.858" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.414" emergencyDecel="9.000" id="vehCVToCOS32" lcAssertive="0.416" tau="1.887">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.689"/>
+            <param key="device.toc.recoveryRate" value="0.229"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.441" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.284" emergencyDecel="9.000" id="vehCVToCOS33" lcAssertive="0.562" tau="1.822">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.809"/>
+            <param key="device.toc.recoveryRate" value="0.176"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.187" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.763" emergencyDecel="9.000" id="vehCVToCOS34" lcAssertive="0.571" tau="1.872">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.437"/>
+            <param key="device.toc.recoveryRate" value="0.324"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.926" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.339" emergencyDecel="9.000" id="vehCVToCOS35" lcAssertive="0.549" tau="1.898">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.651"/>
+            <param key="device.toc.recoveryRate" value="0.197"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.097" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.394" emergencyDecel="9.000" id="vehCVToCOS36" lcAssertive="0.578" tau="1.920">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.751"/>
+            <param key="device.toc.recoveryRate" value="0.265"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.799" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.482" emergencyDecel="9.000" id="vehCVToCOS37" lcAssertive="0.528" tau="1.872">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.501"/>
+            <param key="device.toc.recoveryRate" value="0.287"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.596" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.201" emergencyDecel="9.000" id="vehCVToCOS38" lcAssertive="0.548" tau="1.988">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.668"/>
+            <param key="device.toc.recoveryRate" value="0.149"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.125" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.746" emergencyDecel="9.000" id="vehCVToCOS39" lcAssertive="0.534" tau="1.968">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.600"/>
+            <param key="device.toc.recoveryRate" value="0.125"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.751" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.513" emergencyDecel="9.000" id="vehCVToCOS40" lcAssertive="0.550" tau="1.809">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.640"/>
+            <param key="device.toc.recoveryRate" value="0.224"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.910" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.540" emergencyDecel="9.000" id="vehCVToCOS41" lcAssertive="0.486" tau="1.958">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.848"/>
+            <param key="device.toc.recoveryRate" value="0.183"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.926" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.376" emergencyDecel="9.000" id="vehCVToCOS42" lcAssertive="0.410" tau="1.910">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.910"/>
+            <param key="device.toc.recoveryRate" value="0.230"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.087" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.708" emergencyDecel="9.000" id="vehCVToCOS43" lcAssertive="0.424" tau="1.948">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.920"/>
+            <param key="device.toc.recoveryRate" value="0.232"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.907" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.023" emergencyDecel="9.000" id="vehCVToCOS44" lcAssertive="0.545" tau="1.907">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.525"/>
+            <param key="device.toc.recoveryRate" value="0.106"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.282" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.067" emergencyDecel="9.000" id="vehCVToCOS45" lcAssertive="0.437" tau="1.846">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.493"/>
+            <param key="device.toc.recoveryRate" value="0.341"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.042" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.672" emergencyDecel="9.000" id="vehCVToCOS46" lcAssertive="0.543" tau="1.863">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.588"/>
+            <param key="device.toc.recoveryRate" value="0.130"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.248" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.635" emergencyDecel="9.000" id="vehCVToCOS47" lcAssertive="0.482" tau="1.891">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.819"/>
+            <param key="device.toc.recoveryRate" value="0.187"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.071" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.600" emergencyDecel="9.000" id="vehCVToCOS48" lcAssertive="0.584" tau="1.982">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.886"/>
+            <param key="device.toc.recoveryRate" value="0.113"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.279" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.128" emergencyDecel="9.000" id="vehCVToCOS49" lcAssertive="0.491" tau="1.947">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.409"/>
+            <param key="device.toc.recoveryRate" value="0.327"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.142" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.333" emergencyDecel="9.000" id="vehCVToCOS50" lcAssertive="0.492" tau="1.813">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.545"/>
+            <param key="device.toc.recoveryRate" value="0.168"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.808" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.091" emergencyDecel="9.000" id="vehCVToCOS51" lcAssertive="0.465" tau="1.847">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.927"/>
+            <param key="device.toc.recoveryRate" value="0.307"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.923" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.801" emergencyDecel="9.000" id="vehCVToCOS52" lcAssertive="0.490" tau="1.940">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.730"/>
+            <param key="device.toc.recoveryRate" value="0.254"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.666" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.423" emergencyDecel="9.000" id="vehCVToCOS53" lcAssertive="0.599" tau="1.989">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.734"/>
+            <param key="device.toc.recoveryRate" value="0.116"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.234" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.980" emergencyDecel="9.000" id="vehCVToCOS54" lcAssertive="0.463" tau="1.918">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.788"/>
+            <param key="device.toc.recoveryRate" value="0.107"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.015" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.807" emergencyDecel="9.000" id="vehCVToCOS55" lcAssertive="0.456" tau="1.900">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.534"/>
+            <param key="device.toc.recoveryRate" value="0.198"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.728" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.191" emergencyDecel="9.000" id="vehCVToCOS56" lcAssertive="0.473" tau="1.944">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.312"/>
+            <param key="device.toc.recoveryRate" value="0.129"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.505" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.975" emergencyDecel="9.000" id="vehCVToCOS57" lcAssertive="0.562" tau="1.855">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.872"/>
+            <param key="device.toc.recoveryRate" value="0.311"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.491" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.850" emergencyDecel="9.000" id="vehCVToCOS58" lcAssertive="0.545" tau="1.921">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.640"/>
+            <param key="device.toc.recoveryRate" value="0.071"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.918" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.470" emergencyDecel="9.000" id="vehCVToCOS59" lcAssertive="0.403" tau="1.899">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.545"/>
+            <param key="device.toc.recoveryRate" value="0.113"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.426" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.500" emergencyDecel="9.000" id="vehCVToCOS60" lcAssertive="0.541" tau="1.947">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.398"/>
+            <param key="device.toc.recoveryRate" value="0.365"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.650" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.099" emergencyDecel="9.000" id="vehCVToCOS61" lcAssertive="0.503" tau="1.923">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.805"/>
+            <param key="device.toc.recoveryRate" value="0.334"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.417" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.376" emergencyDecel="9.000" id="vehCVToCOS62" lcAssertive="0.424" tau="1.813">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.876"/>
+            <param key="device.toc.recoveryRate" value="0.037"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.978" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.173" emergencyDecel="9.000" id="vehCVToCOS63" lcAssertive="0.558" tau="1.862">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.906"/>
+            <param key="device.toc.recoveryRate" value="0.232"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.931" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.217" emergencyDecel="9.000" id="vehCVToCOS64" lcAssertive="0.411" tau="1.863">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.719"/>
+            <param key="device.toc.recoveryRate" value="0.158"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.012" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.518" emergencyDecel="9.000" id="vehCVToCOS65" lcAssertive="0.456" tau="1.803">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.847"/>
+            <param key="device.toc.recoveryRate" value="0.150"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.455" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.988" emergencyDecel="9.000" id="vehCVToCOS66" lcAssertive="0.539" tau="1.973">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.844"/>
+            <param key="device.toc.recoveryRate" value="0.066"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.774" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.859" emergencyDecel="9.000" id="vehCVToCOS67" lcAssertive="0.580" tau="1.827">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.595"/>
+            <param key="device.toc.recoveryRate" value="0.215"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.405" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.535" emergencyDecel="9.000" id="vehCVToCOS68" lcAssertive="0.437" tau="1.986">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.579"/>
+            <param key="device.toc.recoveryRate" value="0.146"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.174" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.633" emergencyDecel="9.000" id="vehCVToCOS69" lcAssertive="0.525" tau="1.811">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.477"/>
+            <param key="device.toc.recoveryRate" value="0.308"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.392" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.360" emergencyDecel="9.000" id="vehCVToCOS70" lcAssertive="0.469" tau="1.936">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.202"/>
+            <param key="device.toc.recoveryRate" value="0.034"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.539" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.969" emergencyDecel="9.000" id="vehCVToCOS71" lcAssertive="0.504" tau="1.821">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.277"/>
+            <param key="device.toc.recoveryRate" value="0.390"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.823" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.432" emergencyDecel="9.000" id="vehCVToCOS72" lcAssertive="0.433" tau="1.805">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.881"/>
+            <param key="device.toc.recoveryRate" value="0.240"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.935" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.914" emergencyDecel="9.000" id="vehCVToCOS73" lcAssertive="0.557" tau="1.868">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.634"/>
+            <param key="device.toc.recoveryRate" value="0.047"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.816" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.377" emergencyDecel="9.000" id="vehCVToCOS74" lcAssertive="0.473" tau="1.912">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.916"/>
+            <param key="device.toc.recoveryRate" value="0.183"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.198" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.113" emergencyDecel="9.000" id="vehCVToCOS75" lcAssertive="0.445" tau="1.827">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.843"/>
+            <param key="device.toc.recoveryRate" value="0.078"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.898" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.561" emergencyDecel="9.000" id="vehCVToCOS76" lcAssertive="0.467" tau="1.946">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.713"/>
+            <param key="device.toc.recoveryRate" value="0.167"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.940" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.233" emergencyDecel="9.000" id="vehCVToCOS77" lcAssertive="0.411" tau="1.932">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.329"/>
+            <param key="device.toc.recoveryRate" value="0.200"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.702" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.045" emergencyDecel="9.000" id="vehCVToCOS78" lcAssertive="0.443" tau="1.952">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.924"/>
+            <param key="device.toc.recoveryRate" value="0.194"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.129" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.491" emergencyDecel="9.000" id="vehCVToCOS79" lcAssertive="0.454" tau="1.944">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.362"/>
+            <param key="device.toc.recoveryRate" value="0.147"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.831" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.975" emergencyDecel="9.000" id="vehCVToCOS80" lcAssertive="0.591" tau="1.991">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.141"/>
+            <param key="device.toc.recoveryRate" value="0.378"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.045" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.027" emergencyDecel="9.000" id="vehCVToCOS81" lcAssertive="0.516" tau="1.897">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.323"/>
+            <param key="device.toc.recoveryRate" value="0.026"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.917" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.149" emergencyDecel="9.000" id="vehCVToCOS82" lcAssertive="0.476" tau="1.902">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.498"/>
+            <param key="device.toc.recoveryRate" value="0.067"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.700" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.030" emergencyDecel="9.000" id="vehCVToCOS83" lcAssertive="0.456" tau="1.948">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.476"/>
+            <param key="device.toc.recoveryRate" value="0.083"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.792" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.894" emergencyDecel="9.000" id="vehCVToCOS84" lcAssertive="0.535" tau="1.993">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.908"/>
+            <param key="device.toc.recoveryRate" value="0.344"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.802" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.956" emergencyDecel="9.000" id="vehCVToCOS85" lcAssertive="0.554" tau="1.938">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.597"/>
+            <param key="device.toc.recoveryRate" value="0.236"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.538" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.325" emergencyDecel="9.000" id="vehCVToCOS86" lcAssertive="0.485" tau="1.861">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.700"/>
+            <param key="device.toc.recoveryRate" value="0.111"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.444" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.650" emergencyDecel="9.000" id="vehCVToCOS87" lcAssertive="0.456" tau="1.981">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.880"/>
+            <param key="device.toc.recoveryRate" value="0.370"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.380" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.244" emergencyDecel="9.000" id="vehCVToCOS88" lcAssertive="0.526" tau="1.867">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.833"/>
+            <param key="device.toc.recoveryRate" value="0.426"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.632" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.428" emergencyDecel="9.000" id="vehCVToCOS89" lcAssertive="0.523" tau="1.890">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.430"/>
+            <param key="device.toc.recoveryRate" value="0.106"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.921" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.018" emergencyDecel="9.000" id="vehCVToCOS90" lcAssertive="0.554" tau="1.996">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.890"/>
+            <param key="device.toc.recoveryRate" value="0.116"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.732" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.985" emergencyDecel="9.000" id="vehCVToCOS91" lcAssertive="0.433" tau="1.974">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.510"/>
+            <param key="device.toc.recoveryRate" value="0.084"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.007" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.340" emergencyDecel="9.000" id="vehCVToCOS92" lcAssertive="0.572" tau="1.837">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.951"/>
+            <param key="device.toc.recoveryRate" value="0.411"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.823" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.775" emergencyDecel="9.000" id="vehCVToCOS93" lcAssertive="0.504" tau="1.991">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.636"/>
+            <param key="device.toc.recoveryRate" value="0.174"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="0.841" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.220" emergencyDecel="9.000" id="vehCVToCOS94" lcAssertive="0.416" tau="1.969">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.970"/>
+            <param key="device.toc.recoveryRate" value="0.237"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.454" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.846" emergencyDecel="9.000" id="vehCVToCOS95" lcAssertive="0.544" tau="1.810">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.850"/>
+            <param key="device.toc.recoveryRate" value="0.205"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.082" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.229" emergencyDecel="9.000" id="vehCVToCOS96" lcAssertive="0.584" tau="1.926">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.817"/>
+            <param key="device.toc.recoveryRate" value="0.206"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.942" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.513" emergencyDecel="9.000" id="vehCVToCOS97" lcAssertive="0.528" tau="1.854">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.500"/>
+            <param key="device.toc.recoveryRate" value="0.210"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.969" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="3.182" emergencyDecel="9.000" id="vehCVToCOS98" lcAssertive="0.545" tau="1.959">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.917"/>
+            <param key="device.toc.recoveryRate" value="0.214"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+        <vType accel="1.498" actionStepLength="0.100" carFollowModel="ACC" color="green" decel="2.695" emergencyDecel="9.000" id="vehCVToCOS99" lcAssertive="0.550" tau="1.976">
+            <param key="has.toc.device" value="true"/>
+            <param key="device.toc.manualType" value="vehLVOS"/>
+            <param key="device.toc.automatedType" value="vehCVToCOS"/>
+            <param key="device.toc.responseTime" value="0.000"/>
+            <param key="device.toc.initialAwareness" value="0.705"/>
+            <param key="device.toc.recoveryRate" value="0.282"/>
+            <param key="device.toc.mrmDecel" value="3.000"/>
+            <param key="device.toc.useColorScheme" value="true"/>
+            <param key="device.toc.dynamicToCThreshold" value="10.000"/>
+        </vType>
+    </vTypeDistribution>
+</additional>

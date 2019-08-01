@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <edgeData id="emissions" type="emissions" freq="300" file="outputEmission.xml" excludeEmpty="true" />
+    <edgeData id="meandata" freq="300" file="outputMeandata.xml" excludeEmpty="true" />
+<!--
+    inductionLoops to detect vehicles entering the ToC zone
+-->
+    <inductionLoop id="loop0" lane="e0_0" pos="10" freq="900" file="loop.xml"/>
+    <inductionLoop id="loop1" lane="e0_1" pos="10" freq="900" file="loop.xml"/>
+<!--
+    laneAreaDetectors to get the current density in the ToC zone.
+    They should have the same position as the induction loops and a length
+    L = <entry-position NoAD-zone> - <loop-position>, which is L=2300-10, currently
+-->
+    <laneAreaDetector id="area0" lane="e0_0" pos="10" length="2290" freq="900" file="area.xml"/>
+    <laneAreaDetector id="area1" lane="e0_1" pos="10" length="2290" freq="900" file="area.xml"/>
+</additional>

@@ -1,0 +1,42 @@
+<SSMLog>
+    <conflict begin="5.10" end="14.00" ego="LV.0" foe="CAVToC.2">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="5.10" position="189.70,-1.60" type="2" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="5.10" end="14.00" ego="CAVToC.2" foe="LV.0">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="5.10" position="189.70,-1.60" type="3" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="8.00" end="16.80" ego="CAVToC.5" foe="LV.2">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="8.00" position="13.71,-1.60" type="3" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="8.00" end="16.80" ego="LV.2" foe="CAVToC.5">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="8.00" position="13.71,-1.60" type="2" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="20.90" end="29.60" ego="LV.3" foe="LV.5">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="20.90" position="40.87,-1.60" type="3" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="20.90" end="29.60" ego="LV.5" foe="LV.3">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="20.90" position="40.87,-1.60" type="2" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="77.20" end="86.80" ego="LV.2" foe="CVToC.6">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="81.20" position="1829.05,-1.60" type="2" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+    <conflict begin="77.20" end="86.80" ego="CVToC.6" foe="LV.2">
+        <minTTC time="NA" position="NA" type="NA" value="NA"/>
+        <maxDRAC time="81.20" position="1829.05,-1.60" type="3" value="0.00"/>
+        <PET time="NA" position="NA" type="NA" value="NA"/>
+    </conflict>
+</SSMLog>

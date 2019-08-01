@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Thu 01 Aug 2019 06:02:59 PM CEST by Eclipse SUMO GUI Version 1.2.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="UC5_1.net.xml"/>
+        <route-files value="routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml"/>
+        <additional-files value="additionalsOutput_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml,%20vTypesCAVToC_OS.add.xml,%20vTypesCVToC_OS.add.xml,%20vTypesLV_OS.add.xml"/>
+    </input>
+
+    <time>
+        <step-length value="0.1"/>
+    </time>
+
+    <processing>
+        <step-method.ballistic value="true"/>
+        <ignore-route-errors value="true"/>
+        <lanechange.duration value="2.5"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <toc_device>
+        <device.toc.ogNewTimeHeadway value="100"/>
+        <device.toc.ogNewSpaceHeadway value="5"/>
+        <device.toc.ogMaxDecel value="1"/>
+        <device.toc.ogChangeRate value="1"/>
+    </toc_device>
+
+    <traci_server>
+        <remote-port value="48086"/>
+    </traci_server>
+
+    <gui_only>
+        <tracker-interval value="0.1"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<detector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/det_e1_file.xsd">
+    <interval begin="0.00" end="108.30" id="loop0" nVehContrib="28" flow="930.75" occupancy="6.29" speed="21.25" harmonicMeanSpeed="20.55" length="5.00" nVehEntered="28"/>
+    <interval begin="0.00" end="108.30" id="loop1" nVehContrib="47" flow="1562.33" occupancy="6.66" speed="32.74" harmonicMeanSpeed="32.59" length="5.00" nVehEntered="47"/>
+</detector>
