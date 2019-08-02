@@ -60,14 +60,14 @@ net_params = NetParams(
         "vtype":[os.path.join(UC5_dir, "vTypesLV_OS.add.xml"),
                  os.path.join(UC5_dir, "vTypesCVToC_OS.add.xml"),
                  os.path.join(UC5_dir, "vTypesCAVToC_OS.add.xml")
-                ]
+                ],
+        "flow" : os.path.join(UC5_dir, "routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml")
     }
 )
     
 initial_config = InitialConfig(
     edges_distribution=["e0"]
 )
-vehicles = VehicleParams()
 ##################### Parameters for BaseRunner-Class #############################################
 downwardEdgeID = None
 distance = None
@@ -258,6 +258,7 @@ class BaselineStepListenerMK():
         if debug:
             print('current sim step %s' % t)
         arrivedVehs = [vehID for vehID in master_kernel.vehicle.get_arrived_ids() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
+#         arrivedVehs = [vehID for vehID in traci.simulation.getArrivedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
         self.scenario.downwardToCRequested.difference_update(arrivedVehs)
         self.scenario.downwardToCPending.difference_update(arrivedVehs)
         departedToCVehs = [vehID for vehID in master_kernel.vehicle.get_departed_ids() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
@@ -325,7 +326,7 @@ if __name__ == '__main__':
         env_params=env_params,
         sim_params=sim_params,
         scenario=baselineScenario,
-        simulator='newtraci',
+        simulator='traci',
         stepListener=[myListener]
     )
     

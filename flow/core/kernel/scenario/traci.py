@@ -8,6 +8,7 @@ import subprocess
 import xml.etree.ElementTree as ElementTree
 from lxml import etree
 from copy import deepcopy
+from matplotlib.backends.backend_pgf import NO_ESCAPE
 
 E = etree.Element
 
@@ -118,6 +119,11 @@ class TraCIScenario(KernelScenario):
             or self.network.net_params.osm_path is None
 
         # create the network configuration files
+#         if self.network.net_params.template["option"]:
+#             for item,filenames in self.network.net_params.template.items():
+#                 if item != "option":
+#                     self.read_and_write(item, filenames)
+#         else:    
         if self.network.net_params.template is not None:
             self._edges, self._connections = self.generate_net_from_template(
                 self.network.net_params)
@@ -610,60 +616,77 @@ class TraCIScenario(KernelScenario):
         return edges_dict, conn_dict
     
     def generate_routes(self, routes):
-        routes_data = makexml('routes',
-                              'http://sumo.dlr.de/xsd/routes_file.xsd')
-
-        # add the routes to the .add.xml file
-        for route_id in routes.keys():
-            # in this case, we only have one route, convert into into a
-            # list of routes with one element
-            if isinstance(routes[route_id][0], str):
-                routes[route_id] = [(routes[route_id], 1)]
-
-            # add each route incrementally, and add a second term to denote
-            # the route number of the given route at the given edge
-            for i in range(len(routes[route_id])):
-                r, _ = routes[route_id][i]
-                routes_data.append(E(
-                    'route',
-                    id='route{}_{}'.format(route_id, i),
-                    edges=' '.join(r)
-                ))
-
-        # add the inflows from various edges to the xml file
-        if self.network.net_params.inflows is not None:
-            total_inflows = self.network.net_params.inflows.get()
-            for next_inflow in total_inflows:
-                # do not want to affect the original values
-                inflow = deepcopy(next_inflow)
-
-                # convert any non-string element in the inflow dict to a string
-                for key in inflow:
-                    if not isinstance(inflow[key], str):
-                        inflow[key] = repr(inflow[key])
-
-                # get the name of the edge the inflows correspond to, and the
-                # total inflow rate of the specific inflow
-                edge = deepcopy(inflow['edge'])
-                if 'vehsPerHour' in inflow:
-                    flag, rate = 0, float(inflow['vehsPerHour'])
-                else:
-                    flag, rate = 1, float(inflow['probability'])
-                del inflow['edge']
-
-                # distribute the inflow rates across all routes from a given
-                # edge on the basis of the provided fractions for each route
-                for i in range(len(routes[edge])):
-                    _, frac = routes[edge][i]
-                    inflow['route'] = 'route{}_{}'.format(edge, i)
-                    if flag:
-                        inflow['probability'] = str(rate * frac)
+        
+        no_routes = True
+        for edgeIDs in routes.values():
+            if len(edgeIDs) > 1:
+                no_routes = False
+                break
+            
+        if no_routes:
+            # look up in the net params if a route / flow / ... file was given
+            routes = self.network.net_params.template.get("flow", None)
+            if routes == None:
+                raise Exception('Must specify routes file or alternatively flows or trips.')
+            tree = ElementTree.parse(routes)
+            tree.write(self.cfg_path + self.roufn)
+            
+        else:
+        
+            routes_data = makexml('routes',
+                                  'http://sumo.dlr.de/xsd/routes_file.xsd')
+    
+            # add the routes to the .add.xml file
+            for route_id in routes.keys():
+                # in this case, we only have one route, convert into into a
+                # list of routes with one element
+                if isinstance(routes[route_id][0], str):
+                    routes[route_id] = [(routes[route_id], 1)]
+    
+                # add each route incrementally, and add a second term to denote
+                # the route number of the given route at the given edge
+                for i in range(len(routes[route_id])):
+                    r, _ = routes[route_id][i]
+                    routes_data.append(E(
+                        'route',
+                        id='route{}_{}'.format(route_id, i),
+                        edges=' '.join(r)
+                    ))
+    
+            # add the inflows from various edges to the xml file
+            if self.network.net_params.inflows is not None:
+                total_inflows = self.network.net_params.inflows.get()
+                for next_inflow in total_inflows:
+                    # do not want to affect the original values
+                    inflow = deepcopy(next_inflow)
+    
+                    # convert any non-string element in the inflow dict to a string
+                    for key in inflow:
+                        if not isinstance(inflow[key], str):
+                            inflow[key] = repr(inflow[key])
+    
+                    # get the name of the edge the inflows correspond to, and the
+                    # total inflow rate of the specific inflow
+                    edge = deepcopy(inflow['edge'])
+                    if 'vehsPerHour' in inflow:
+                        flag, rate = 0, float(inflow['vehsPerHour'])
                     else:
-                        inflow['vehsPerHour'] = str(rate * frac)
-
-                    routes_data.append(_flow(**inflow))
-
-        printxml(routes_data, self.cfg_path + self.roufn)
+                        flag, rate = 1, float(inflow['probability'])
+                    del inflow['edge']
+    
+                    # distribute the inflow rates across all routes from a given
+                    # edge on the basis of the provided fractions for each route
+                    for i in range(len(routes[edge])):
+                        _, frac = routes[edge][i]
+                        inflow['route'] = 'route{}_{}'.format(edge, i)
+                        if flag:
+                            inflow['probability'] = str(rate * frac)
+                        else:
+                            inflow['vehsPerHour'] = str(rate * frac)
+    
+                        routes_data.append(_flow(**inflow))
+    
+            printxml(routes_data, self.cfg_path + self.roufn)
         
         return self.cfg_path + self.roufn 
 
@@ -808,6 +831,7 @@ class TraCIScenario(KernelScenario):
         printxml(gui, self.cfg_path + self.guifn)
 
         # this is the data that we will pass to the *.rou.xml file
+#         if not net_params.template['option']:
         self.roufn = self.generate_routes(routes)
         
         # this is the data that we will pass to the *.sumo.cfg file
@@ -951,14 +975,29 @@ class TraCIScenario(KernelScenario):
         connection_data = {'next': next_conn_data, 'prev': prev_conn_data}
 
         return net_data, connection_data
-    
-class NewTraCIScenario(TraCIScenario):
-    def __init__(self,master_kernel,sim_params):
-         super(NewTraCIScenario, self).__init__(master_kernel, sim_params)
-    
-    def generate_routes(self, r):
-        UC5_dir = "/home/robert/flow/examples/UC5/"
-        routes=os.path.join(UC5_dir, "routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml")
-        tree = ElementTree.parse(routes)
-        tree.write(self.cfg_path + self.roufn)
-        return self.cfg_path + self.roufn
+
+#     def read_and_write(self, key, f):
+#         tree = None
+#         if type(f)==list:
+#             for item in f:
+#                 t = ElementTree.parse(item)
+#                 
+#                 if tree == None:
+#                     tree = t
+#                 else:
+#                     for child in t.getroot().getchildren():
+#                         tree.getroot().append(child)
+#             
+#         else:
+#             tree = ElementTree.parse(f)
+#         
+#         if key in ['rou', 'flow']:
+#             name = self.roufn
+#         elif key == 'net':
+#             name = self.netfn
+#         elif key == 'vtype':
+#             name = self.addfn
+#         else:
+#             raise Exception('Unknown data type %s. No file can be written.' % key)
+#             
+#         tree.write(self.cfg_path + name)
