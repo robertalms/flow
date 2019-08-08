@@ -25,12 +25,12 @@ import random
 import optparse
 import xml.etree.ElementTree as ET
 # we need to import python modules from the $SUMO_HOME/tools directory
-try:
-    sys.path.append('/usr/share/sumo/tools/')
-    from sumolib import checkBinary  # noqa
-except ImportError:
-    sys.exit(
-        "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')")
+# try:
+#     sys.path.append('/usr/share/sumo/tools/')
+#     from sumolib import checkBinary  # noqa
+# except ImportError:
+#     sys.exit(
+#         "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')")
 
 import traci
 from flow.scenarios import Scenario
@@ -291,8 +291,8 @@ net_params = NetParams(
                  os.path.join(UC5_dir, "vTypesCVToC_OS.add.xml"),
                  os.path.join(UC5_dir, "vTypesCAVToC_OS.add.xml")
                 ]
-    },
-    no_internal_links=True
+    }#,
+#     no_internal_links=True
 )
     
 initial_config = InitialConfig(
