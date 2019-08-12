@@ -108,6 +108,7 @@ class Env(*classdef):
     """
 
     def __init__(self, env_params, sim_params, scenario, simulator='traci', stepListener=[]):
+#     def __init__(self, env_params, sim_params, scenario, simulator='traci'):
         """Initialize the environment class.
 
         Parameters
@@ -155,10 +156,12 @@ class Env(*classdef):
 
         # the simulator used by this environment
         self.simulator = simulator
+        self.stepListener=stepListener
 
         # create the Flow kernel
         self.k = Kernel(simulator=self.simulator,
-                        sim_params=sim_params, stepListener=stepListener)
+                        sim_params=sim_params, 
+                        stepListener=stepListener)
 
         # use the scenario class's network parameters to generate the necessary
         # scenario components within the scenario kernel
@@ -173,6 +176,8 @@ class Env(*classdef):
         kernel_api = self.k.simulation.start_simulation(
             scenario=self.k.scenario, sim_params=sim_params)
 
+        if self.stepListener:
+            kernel_api.addStepListener(self.stepListener)
         # pass the kernel api to the kernel and it's subclasses
         self.k.pass_api(kernel_api)
 
@@ -367,7 +372,7 @@ class Env(*classdef):
             self.k.simulation.simulation_step()
 
             # store new observations in the vehicles and traffic lights class
-            self.k.update(reset=False)
+#             self.k.update(reset=False)
 
             # update the colors of vehicles
 #             if self.sim_params.render:

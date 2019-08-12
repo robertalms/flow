@@ -11,6 +11,7 @@ import time
 import logging
 import subprocess
 import signal
+from psutil._pslinux import _connections
 
 
 # Number of retries on restarting SUMO before giving up
@@ -54,7 +55,7 @@ class TraCISimulation(KernelSimulation):
     def simulation_step(self):
         """See parent class."""
         self.kernel_api.simulationStep()
-        [listener.step(self.master_kernel, self.kernel_api.simulation.getTime()) for listener in self.master_kernel.step_listener]
+#         [listener.step(self.master_kernel, self.kernel_api.simulation.getTime()) for listener in self.master_kernel.step_listener]
 
     def update(self, reset):
         """See parent class."""
@@ -152,10 +153,13 @@ class TraCISimulation(KernelSimulation):
                 else:
                     time.sleep(config.SUMO_SLEEP)
 
-                traci_connection = traci.connect(port, numRetries=100)
+#                 traci_connection = traci.connect(port, numRetries=100)
+                traci.init(port, numRetries=100)
+                traci_connection=traci._connections['default']
+                
                 traci_connection.setOrder(0)
                 traci_connection.simulationStep()
-
+                
                 return traci_connection
             except Exception as e:
                 print("Error during start: {}".format(traceback.format_exc()))
