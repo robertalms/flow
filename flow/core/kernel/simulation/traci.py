@@ -153,10 +153,7 @@ class TraCISimulation(KernelSimulation):
                 else:
                     time.sleep(config.SUMO_SLEEP)
 
-#                 traci_connection = traci.connect(port, numRetries=100)
-                traci.init(port, numRetries=100)
-                traci_connection=traci._connections['default']
-                
+                traci_connection = traci.connect(port, numRetries=100)
                 traci_connection.setOrder(0)
                 traci_connection.simulationStep()
                 

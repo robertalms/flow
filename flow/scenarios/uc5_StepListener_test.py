@@ -153,7 +153,7 @@ class BaselineRunnerScenario(Scenario):
                 #~ print("found %s"%start_str)
                 return start_str
 
-    def initToCs(self,vehSet, handledSet, edgeID, distance):
+    def initToCs(self,vehSet, handledSet, edgeID, distance,traci):
         ''' For all vehicles in the given set, check whether they passed the cross section, where a ToC should be triggered and trigger in case. 
         '''
         global options
@@ -166,7 +166,7 @@ class BaselineRunnerScenario(Scenario):
                 newTORs.append(vehID)
                 if ToCVehicleType is not None:
                     # Request a ToC for the vehicle
-                    self.requestToC(vehID, ToC_lead_times[ToCVehicleType])
+                    self.requestToC(vehID, ToC_lead_times[ToCVehicleType],traci)
                     if debug:
                         t = traci.simulation.getCurrentTime() / 1000.
                         print("## Requesting ToC for vehicle '%s'!" % (vehID))
@@ -193,7 +193,7 @@ class BaselineRunnerScenario(Scenario):
             tocInfos.append(el)
 
 
-    def outputTORs(self,t, vehIDs, tocInfos):
+    def outputTORs(self,t, vehIDs, tocInfos,traci):
         for vehID in vehIDs:
             el = ET.Element("TOR")
             el.set("time", str(t))
@@ -204,7 +204,7 @@ class BaselineRunnerScenario(Scenario):
             el.set("remainingDist", distTillRouteEnd)
             tocInfos.append(el)
 
-    def outputToCs(self,t, vehIDs, tocInfos):
+    def outputToCs(self,t, vehIDs, tocInfos,traci):
         for vehID in vehIDs:
             el = ET.Element("ToC")
             el.set("time", str(t))
@@ -225,7 +225,7 @@ class BaselineRunnerScenario(Scenario):
                 el.set("MRM", str(MRMDuration))
             tocInfos.append(el)
 
-    def requestToC(self,vehID, timeUntilMRM):
+    def requestToC(self,vehID, timeUntilMRM,traci):
         traci.vehicle.setParameter(vehID, "device.toc.requestToC", str(timeUntilMRM))
 
 
@@ -261,15 +261,18 @@ class BaselineRunnerScenario(Scenario):
 class BaselineStepListenerMK(traci.StepListener):
     def __init__(self, scenario):
         self.scenario = scenario
-         
+        self.connection = None
+    
+    def get_connection(self, conn):
+        self.connection = conn
+    
     def step(self, t):
         if debug:
             print('current sim step %s' % t)
-#         arrivedVehs = [vehID for vehID in master_kernel.vehicle.get_arrived_ids() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
-        arrivedVehs = [vehID for vehID in traci.simulation.getArrivedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
+        arrivedVehs = [vehID for vehID in self.connection.simulation.getArrivedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
         self.scenario.downwardToCRequested.difference_update(arrivedVehs)
         self.scenario.downwardToCPending.difference_update(arrivedVehs)
-        departedToCVehs = [vehID for vehID in traci.simulation.getDepartedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
+        departedToCVehs = [vehID for vehID in self.connection.simulation.getDepartedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
         #~ if (len(traci.simulation.getDepartedIDList())>0):
             #~ print("departed = %s"%traci.simulation.getDepartedIDList())
             #~ print("departedToCVehs = %s"%departedToCVehs)
@@ -279,7 +282,7 @@ class BaselineStepListenerMK(traci.StepListener):
             #~ print("Departed ToC vehicle '%s'"%vehID)
             if (random.random() < ToCprobability):
                 # This vehicle has to perform a ToC
-                traci.vehicle.setVehicleClass(vehID, "custom1")
+                self.connection.vehicle.setVehicleClass(vehID, "custom1")
             else:
                 # vehicle will manage situation witout a ToC
                 noToC.append(vehID)
@@ -288,24 +291,24 @@ class BaselineStepListenerMK(traci.StepListener):
         self.scenario.downwardToCPending.update(departedToCVehs)
     
         # provide the ToCService at the specified cross section for informing the lane closure
-        newTORs = self.scenario.initToCs(self.scenario.downwardToCPending, self.scenario.downwardToCRequested, downwardEdgeID, distance)
+        newTORs = self.scenario.initToCs(self.scenario.downwardToCPending, self.scenario.downwardToCRequested, downwardEdgeID, distance, self.connection)
         self.scenario.downwardToCPending.difference_update(self.scenario.downwardToCRequested)
     
         # keep book on performed ToCs and trigger best lanes update by resetting the route
         downwardToCPerformed = set()
         for vehID in self.scenario.downwardToCRequested:
-            if traci.vehicle.getVehicleClass(vehID) == "passenger":
+            if self.connection.vehicle.getVehicleClass(vehID) == "passenger":
                 if debug:
                     print("Downward transition completed for vehicle '%s'" % vehID)
                 downwardToCPerformed.add(vehID)
-                traci.vehicle.updateBestLanes(vehID)
+                self.connection.vehicle.updateBestLanes(vehID)
         self.scenario.downwardToCRequested.difference_update(downwardToCPerformed)
         #~ upwardToCPending.update(downwardTocPerformed) # no upwards ToC for baseline
     
         # add xml output
         self.scenario.outputNoToC(t, noToC, tocInfos.getroot())
-        self.scenario.outputTORs(t, newTORs, tocInfos.getroot())
-        self.scenario.outputToCs(t, downwardToCPerformed, tocInfos.getroot())
+        self.scenario.outputTORs(t, newTORs, tocInfos.getroot(),self.connection)
+        self.scenario.outputToCs(t, downwardToCPerformed, tocInfos.getroot(),self.connection)
     
         #~ # provide ToCService to the upwardTransitions
         #~ upwardTocPerformed = set()
@@ -337,8 +340,8 @@ if __name__ == '__main__':
                           ) 
     
     myListener = BaselineStepListenerMK(baselineScenario)
-    
-#     traci.addStepListener(myListener)
+    traci.setConnectHook(myListener.get_connection)
+
     # create the environment
     env = myEnv(
         env_params=env_params,
