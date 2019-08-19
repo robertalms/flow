@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 from flow.scenarios import Scenario
 from flow.core.params import InitialConfig
 from flow.core.params import TrafficLightParams
-
 from flow.envs import Env
 
 # the Experiment class is used for running simulations
@@ -69,7 +68,6 @@ initial_config = InitialConfig(
 ##################### Parameters for BaseRunner-Class #############################################
 downwardEdgeID = None
 distance = None
-
 # Vehicle ID start-string to identify vehicles that are informed by TransAID (none for baseline)
 AV_identifiers = [] 
 # Map from vehicle ID start-string to identify vehicles, that will perform a ToC in the scenario, 
@@ -79,7 +77,6 @@ ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
 ToCprobability = 1.0
 global options
 debug=False
-
 # define the environment class myEnv, and inherit properties from the base environment class Env
 class myEnv(Env):
     @property
@@ -145,7 +142,6 @@ class BaselineRunnerScenario(Scenario):
         
         super().__init__(name, vehicles, net_params, initial_config,traffic_lights)
         
-
     def getIdentifier(self,fullID, identifierList):
         #~ print ("getIdentifier(%s, %s)"%(fullID, identifierList))
         for start_str in identifierList:
@@ -153,37 +149,28 @@ class BaselineRunnerScenario(Scenario):
                 #~ print("found %s"%start_str)
                 return start_str
 
-    def initToCs(self,vehSet, handledSet, edgeID, distance,traci):
+    def initToCs(self,vehSet, handledSet, edgeID, distance,connection):
         ''' For all vehicles in the given set, check whether they passed the cross section, where a ToC should be triggered and trigger in case. 
         '''
         global options
         newTORs = []
         for vehID in vehSet:
-            distToTOR = traci.vehicle.getDrivingDistance(vehID, edgeID, distance)
+            distToTOR = connection.vehicle.getDrivingDistance(vehID, edgeID, distance)
             if distToTOR < 0.:
                 handledSet.add(vehID)
                 ToCVehicleType = self.getIdentifier(vehID, ToC_lead_times.keys())
                 newTORs.append(vehID)
                 if ToCVehicleType is not None:
                     # Request a ToC for the vehicle
-                    self.requestToC(vehID, ToC_lead_times[ToCVehicleType],traci)
+                    self.requestToC(vehID, ToC_lead_times[ToCVehicleType],connection)
                     if debug:
-                        t = traci.simulation.getCurrentTime() / 1000.
+                        t = connection.simulation.getCurrentTime() / 1000.
                         print("## Requesting ToC for vehicle '%s'!" % (vehID))
                         print("Requested ToC of %s at t=%s (until t=%s)" % (vehID, t, t + float(ToC_lead_times[ToCVehicleType])))
-                        printToCParams(vehID, True)
+                        self.printToCParams(vehID,connection,True)
                     continue
 
-                # No ToC vehicle
-                # TODO: In non-baseline case add a check for the transAID-effectedness (see AV_identifiers)
-                #~ TransAIDAffectedType = getIdentifier(vehID, AV_identifiers)
-                #~ if TransAIDAffectedType is not None:
-                    #~ if options.verbose:
-                        #~ print("## Informing AV '%s' about alternative path!" % (vehID))
-                    #~ # vClass change indicates that vehicle may run on restricted lane (UC1), which prohibits vClass custom1
-                    #~ traci.vehicle.setVehicleClass(vehID, "passenger")
         return newTORs
-
 
     def outputNoToC(self,t, vehIDs, tocInfos):
         for vehID in vehIDs:
@@ -193,27 +180,27 @@ class BaselineRunnerScenario(Scenario):
             tocInfos.append(el)
 
 
-    def outputTORs(self,t, vehIDs, tocInfos,traci):
+    def outputTORs(self,t, vehIDs, tocInfos,connection):
         for vehID in vehIDs:
             el = ET.Element("TOR")
             el.set("time", str(t))
             el.set("vehID", vehID)
-            lastRouteEdgeID = traci.vehicle.getRoute(vehID)[-1]
-            lastRouteEdgeLength = traci.lane.getLength(lastRouteEdgeID+"_0")
-            distTillRouteEnd = str(traci.vehicle.getDrivingDistance(vehID, lastRouteEdgeID, lastRouteEdgeLength))
+            lastRouteEdgeID = connection.vehicle.getRoute(vehID)[-1]
+            lastRouteEdgeLength = connection.lane.getLength(lastRouteEdgeID+"_0")
+            distTillRouteEnd = str(connection.vehicle.getDrivingDistance(vehID, lastRouteEdgeID, lastRouteEdgeLength))
             el.set("remainingDist", distTillRouteEnd)
             tocInfos.append(el)
 
-    def outputToCs(self,t, vehIDs, tocInfos,traci):
+    def outputToCs(self,t, vehIDs, tocInfos,connection):
         for vehID in vehIDs:
             el = ET.Element("ToC")
             el.set("time", str(t))
             el.set("vehID", vehID)
-            lastRouteEdgeID = traci.vehicle.getRoute(vehID)[-1]
-            lastRouteEdgeLength = traci.lane.getLength(lastRouteEdgeID+"_0")
-            distTillRouteEnd = str(traci.vehicle.getDrivingDistance(vehID, lastRouteEdgeID, lastRouteEdgeLength))
+            lastRouteEdgeID = connection.vehicle.getRoute(vehID)[-1]
+            lastRouteEdgeLength = connection.lane.getLength(lastRouteEdgeID+"_0")
+            distTillRouteEnd = str(connection.vehicle.getDrivingDistance(vehID, lastRouteEdgeID, lastRouteEdgeLength))
             el.set("remainingDist", distTillRouteEnd)
-            ToCState = traci.vehicle.getParameter(vehID, "device.toc.state")
+            ToCState = connection.vehicle.getParameter(vehID, "device.toc.state")
             if ToCState != "MRM":
                 # vehicle is not performing an MRM
                 el.set("MRM", str(0.))
@@ -221,27 +208,27 @@ class BaselineRunnerScenario(Scenario):
                 # vehicle was performing an MRM, determine the time for which it performed the MRM
                 ToCVehicleType = self.getIdentifier(vehID, ToC_lead_times.keys())
                 leadTime = ToC_lead_times[ToCVehicleType]
-                MRMDuration = float(traci.vehicle.getParameter(vehID, "device.toc.responseTime")) - leadTime
+                MRMDuration = float(connection.vehicle.getParameter(vehID, "device.toc.responseTime")) - leadTime
                 el.set("MRM", str(MRMDuration))
             tocInfos.append(el)
 
-    def requestToC(self,vehID, timeUntilMRM,traci):
-        traci.vehicle.setParameter(vehID, "device.toc.requestToC", str(timeUntilMRM))
+    def requestToC(self,vehID, timeUntilMRM,connection):
+        connection.vehicle.setParameter(vehID, "device.toc.requestToC", str(timeUntilMRM))
 
 
-    def printToCParams(self,vehID, only_dynamic=False):
-        holder = traci.vehicle.getParameter(vehID, "device.toc.holder")
-        manualType = traci.vehicle.getParameter(vehID, "device.toc.manualType")
-        automatedType = traci.vehicle.getParameter(vehID, "device.toc.automatedType")
-        responseTime = traci.vehicle.getParameter(vehID, "device.toc.responseTime")
-        recoveryRate = traci.vehicle.getParameter(vehID, "device.toc.recoveryRate")
-        initialAwareness = traci.vehicle.getParameter(vehID, "device.toc.initialAwareness")
-        mrmDecel = traci.vehicle.getParameter(vehID, "device.toc.mrmDecel")
-        currentAwareness = traci.vehicle.getParameter(vehID, "device.toc.currentAwareness")
-        state = traci.vehicle.getParameter(vehID, "device.toc.state")
-        speed = traci.vehicle.getSpeed(vehID)
+    def printToCParams(self,vehID,connection, only_dynamic=False):
+        holder = connection.vehicle.getParameter(vehID, "device.toc.holder")
+        manualType = connection.vehicle.getParameter(vehID, "device.toc.manualType")
+        automatedType = connection.vehicle.getParameter(vehID, "device.toc.automatedType")
+        responseTime = connection.vehicle.getParameter(vehID, "device.toc.responseTime")
+        recoveryRate = connection.vehicle.getParameter(vehID, "device.toc.recoveryRate")
+        initialAwareness = connection.vehicle.getParameter(vehID, "device.toc.initialAwareness")
+        mrmDecel = connection.vehicle.getParameter(vehID, "device.toc.mrmDecel")
+        currentAwareness = connection.vehicle.getParameter(vehID, "device.toc.currentAwareness")
+        state = connection.vehicle.getParameter(vehID, "device.toc.state")
+        speed = connection.vehicle.getSpeed(vehID)
 
-        print("time step %s" % traci.simulation.getCurrentTime())
+        print("time step %s" % connection.simulation.getCurrentTime())
         print("ToC device infos for vehicle '%s'" % vehID)
         if not only_dynamic:
             print("Static parameters:")
@@ -257,7 +244,6 @@ class BaselineRunnerScenario(Scenario):
         print("  currentSpeed = %s" % speed)
         print("  state = %s" % state)
 ###################################################################################################
-
 class BaselineStepListenerMK(traci.StepListener):
     def __init__(self, scenario):
         self.scenario = scenario
@@ -273,9 +259,6 @@ class BaselineStepListenerMK(traci.StepListener):
         self.scenario.downwardToCRequested.difference_update(arrivedVehs)
         self.scenario.downwardToCPending.difference_update(arrivedVehs)
         departedToCVehs = [vehID for vehID in self.connection.simulation.getDepartedIDList() if self.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
-        #~ if (len(traci.simulation.getDepartedIDList())>0):
-            #~ print("departed = %s"%traci.simulation.getDepartedIDList())
-            #~ print("departedToCVehs = %s"%departedToCVehs)
         noToC = []
         for vehID in departedToCVehs:
             # set ToC vehicle class to custom1
@@ -303,24 +286,15 @@ class BaselineStepListenerMK(traci.StepListener):
                 downwardToCPerformed.add(vehID)
                 self.connection.vehicle.updateBestLanes(vehID)
         self.scenario.downwardToCRequested.difference_update(downwardToCPerformed)
-        #~ upwardToCPending.update(downwardTocPerformed) # no upwards ToC for baseline
     
         # add xml output
         self.scenario.outputNoToC(t, noToC, tocInfos.getroot())
         self.scenario.outputTORs(t, newTORs, tocInfos.getroot(),self.connection)
         self.scenario.outputToCs(t, downwardToCPerformed, tocInfos.getroot(),self.connection)
     
-        #~ # provide ToCService to the upwardTransitions
-        #~ upwardTocPerformed = set()
-        #~ doToC(upwardToCPending, upwardTocPerformed, 0., upwardEdgeID, upwardDist)
-        #~ upwardToCPending.difference_update(upwardTocPerformed)
         if debug:
-            print("downwardToCRequested=%s" % downwardToCRequested)
-            #~ print("Downward ToC performed: %s" % str(sorted(downwardTocPerformed)))
-            #~ print("Upward ToC performed: %s" % str(sorted(upwardTocPerformed)))
-            print("DownwardToCPending:%s" % str(sorted(downwardToCPending)))
-            #~ print("upwardToCPending:%s" % str(sorted(upwardToCPending)))
-            #~ upwardToCPending.difference_update(arrivedVehs)
+            print("downwardToCRequested=%s" % self.scenario.downwardToCRequested)
+            print("DownwardToCPending:%s" % str(sorted(self.scenario.downwardToCPending)))
         return True
 ###################################################################################################
 
