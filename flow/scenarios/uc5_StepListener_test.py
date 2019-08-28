@@ -22,13 +22,13 @@ import xml.etree.ElementTree as ET
 from flow.scenarios import Scenario
 from flow.core.params import InitialConfig
 from flow.core.params import TrafficLightParams
-from flow.envs import Env
 
 # the Experiment class is used for running simulations
 from flow.core.experiment import Experiment
 
 # the base scenario class
 from flow.scenarios import Scenario
+from flow.envs import uc5_env
 
 # all other imports are standard
 from flow.core.params import VehicleParams
@@ -75,54 +75,8 @@ AV_identifiers = []
 ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
 # Probability, that a given CV or CAV has to perform a ToC
 ToCprobability = 1.0
-global options
 debug=False
-# define the environment class myEnv, and inherit properties from the base environment class Env
-class myEnv(Env):
-    @property
-    def action_space(self):
-        num_actions = self.initial_vehicles.num_rl_vehicles
-        accel_ub = self.env_params.additional_params["max_accel"]
-        accel_lb = - abs(self.env_params.additional_params["max_decel"])
-
-        return Box(low=accel_lb,
-                   high=accel_ub,
-                   shape=(num_actions,))
-    @property
-    def observation_space(self):
-        return Box(
-            low=0,
-            high=float("inf"),
-            shape=(2*self.initial_vehicle.num_vehicles,),
-        )
-    def _apply_rl_actions(self, rl_actions):
-        # the names of all autonomous (RL) vehicles in the network
-        rl_ids = self.k.vehicle.get_rl_ids()
-
-        # use the base environment method to convert actions into accelerations for the rl vehicles
-        self.k.vehicle.apply_acceleration(rl_ids, rl_actions)
-    def get_state(self, **kwargs):
-        # the get_ids() method is used to get the names of all vehicles in the network
-        ids = self.k.vehicle.get_ids()
-
-        # we use the get_absolute_position method to get the positions of all vehicles
-        pos = [self.k.vehicle.get_x_by_id(veh_id) for veh_id in ids]
-
-        # we use the get_speed method to get the velocities of all vehicles
-        vel = [self.k.vehicle.get_speed(veh_id) for veh_id in ids]
-
-        # the speeds and positions are concatenated to produce the state
-        return np.concatenate((pos, vel))
-    def compute_reward(self, rl_actions, **kwargs):
-        # the get_ids() method is used to get the names of all vehicles in the network
-        ids = self.k.vehicle.get_ids()
-
-        # we next get a list of the speeds of all vehicles in the network
-        speeds = self.k.vehicle.get_speed(ids)
-
-        # finally, we return the average of all these speeds as the reward
-        return np.mean(speeds) 
-###################################################################################################    
+    
 class BaselineRunnerScenario(Scenario):
     
     def __init__(self,
@@ -152,7 +106,6 @@ class BaselineRunnerScenario(Scenario):
     def initToCs(self,vehSet, handledSet, edgeID, distance,connection):
         ''' For all vehicles in the given set, check whether they passed the cross section, where a ToC should be triggered and trigger in case. 
         '''
-        global options
         newTORs = []
         for vehID in vehSet:
             distToTOR = connection.vehicle.getDrivingDistance(vehID, edgeID, distance)
@@ -295,6 +248,7 @@ class BaselineStepListenerMK(traci.StepListener):
         if debug:
             print("downwardToCRequested=%s" % self.scenario.downwardToCRequested)
             print("DownwardToCPending:%s" % str(sorted(self.scenario.downwardToCPending)))
+            print("Length of DownwardToCPending:%s" % str(len(self.scenario.downwardToCPending)))
         return True
 ###################################################################################################
 
@@ -317,7 +271,7 @@ if __name__ == '__main__':
     traci.setConnectHook(myListener.get_connection)
 
     # create the environment
-    env = myEnv(
+    env = uc5_env(
         env_params=env_params,
         sim_params=sim_params,
         scenario=baselineScenario,
