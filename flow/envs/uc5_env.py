@@ -108,9 +108,7 @@ class uc5_env(Env):
                 if segment[2]:  # if controlled
                     num_lanes = self.k.scenario.num_lanes(segment[0])
                     action_size += num_lanes * segment[1]
-        return Box(
-            low=0, high=1,
-            shape=(int(action_size), ), dtype=np.int32)
+        return Box(low=0, high=1, shape=(int(action_size), ), dtype=np.int32)
     @property
     def observation_space(self):
 #         # from flow guys
@@ -145,8 +143,10 @@ class uc5_env(Env):
 #                     max_speed_curr = self.k.vehicle.get_max_speed(rl_id)
 #                     next_max = np.clip(max_speed_curr + action, 0.01, 23.0)
 #                     self.k.vehicle.set_max_speed(rl_id, next_max)
-#                     if action == 1:
-#                         self.k.vehicle.setParameter(vehID, "device.toc.requestToC", str(timeUntilMRM))
+                    if action == 1:
+                        ToCVehicleType = self.getIdentifier(rl_id, ToC_lead_times.keys())
+                        timeUntilMRM=ToC_lead_times[ToCVehicleType]
+                        self.k.vehicle.setParameter(rl_id, "device.toc.requestToC", str(timeUntilMRM))
 
 ###################################################################################################        
 #         arrivedVehs = [vehID for vehID in self.k.simulation.getArrivedIDList() if self.k.scenario.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
