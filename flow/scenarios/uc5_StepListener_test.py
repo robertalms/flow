@@ -60,7 +60,7 @@ net_params = NetParams(
     }
 )
 ADDITIONAL_SCENARIO_PARAMS = dict(
-    tocInfos = ET.ElementTree(ET.Element("tocInfos")),
+#     tocInfos = ET.ElementTree(ET.Element("tocInfos")),
     downwardEdgeID = "e0",
     distance = 2300.,
     )
@@ -230,7 +230,7 @@ class BaselineStepListenerMK(traci.StepListener):
         self.scenario.downwardToCPending.update(departedToCVehs)
     
         # provide the ToCService at the specified cross section for informing the lane closure
-        newTORs = self.scenario.initToCs(self.scenario.downwardToCPending, self.scenario.downwardToCRequested, downwardEdgeID, distance, self.connection)
+        newTORs = self.scenario.initToCs(self.scenario.downwardToCPending, self.scenario.downwardToCRequested, "e0", 2300, self.connection)
         self.scenario.downwardToCPending.difference_update(self.scenario.downwardToCRequested)
     
         # keep book on performed ToCs and trigger best lanes update by resetting the route
@@ -244,9 +244,9 @@ class BaselineStepListenerMK(traci.StepListener):
         self.scenario.downwardToCRequested.difference_update(downwardToCPerformed)
     
         # add xml output
-        self.scenario.outputNoToC(t, noToC, tocInfos.getroot())
-        self.scenario.outputTORs(t, newTORs, tocInfos.getroot(),self.connection)
-        self.scenario.outputToCs(t, downwardToCPerformed, tocInfos.getroot(),self.connection)
+#         self.scenario.outputNoToC(t, noToC, tocInfos.getroot())
+#         self.scenario.outputTORs(t, newTORs, tocInfos.getroot(),self.connection)
+#         self.scenario.outputToCs(t, downwardToCPerformed, tocInfos.getroot(),self.connection)
     
         if debug:
             print("downwardToCRequested=%s" % self.scenario.downwardToCRequested)
@@ -256,10 +256,10 @@ class BaselineStepListenerMK(traci.StepListener):
 ###################################################################################################
 
 if __name__ == '__main__':
-    tocInfos = ET.ElementTree(ET.Element("tocInfos"))
- 
-    downwardEdgeID = "e0"
-    distance = 2300. 
+#     tocInfos = ET.ElementTree(ET.Element("tocInfos"))
+#  
+#     downwardEdgeID = "e0"
+#     distance = 2300. 
     
     baselineScenario = UC5_scenario(
                            name="template",

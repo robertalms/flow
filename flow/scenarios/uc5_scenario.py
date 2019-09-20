@@ -36,10 +36,10 @@ net_params = NetParams(
 # initial_config = InitialConfig(
 #     edges_distribution=["e0"]
 # )
-
+tocInfos = ET.ElementTree(ET.Element("tocInfos"))
 downwardEdgeID = None
 distance = None
-tocInfos=None
+# tocInfos=None
 ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
 debug=False
 
@@ -54,7 +54,7 @@ class UC5_scenario(Scenario):
         
         self.downwardEdgeID=initial_config.additional_params["downwardEdgeID"]
         self.distance=initial_config.additional_params["distance"]
-        self.tocInfos=initial_config.additional_params["tocInfos"]
+        self.tocInfos=tocInfos
         self.downwardToCPending = set()
         self.downwardToCRequested = set()
         

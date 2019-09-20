@@ -9,6 +9,7 @@ import sys
 #         "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')")
 import traci
 import os
+from traci.connection import StepListener
 os.environ['SUMO_HOME']="/home/robert/sumo"
 from flow.envs import Env
 from gym.spaces.box import Box
@@ -79,7 +80,7 @@ net_params = NetParams(
     }
 )
 ADDITIONAL_SCENARIO_PARAMS = dict(
-    tocInfos = ET.ElementTree(ET.Element("tocInfos")),
+#     tocInfos = ET.ElementTree(ET.Element("tocInfos")),
     downwardEdgeID = "e0",
     distance = 2300.,
     )    
@@ -328,6 +329,8 @@ flow_params = dict(
     # parameters specifying the positioning of vehicles upon initialization/
     # reset (see flow.core.params.InitialConfig)
     initial=initial_config,
+    
+#     stepListener=myListener,
 
 #     # traffic lights to be introduced to specific nodes (see
 #     # flow.core.params.TrafficLightParams)
