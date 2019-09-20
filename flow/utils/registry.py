@@ -102,7 +102,8 @@ def make_create_env(params, version=0, render=None):
                     "env_params": env_params,
                     "sim_params": sim_params,
                     "scenario": scenario,
-                    "simulator": params['simulator']
+                    "simulator": params['simulator'],
+                    "stepListener": params['stepListener']
                 })
         except Exception:
             pass

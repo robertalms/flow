@@ -149,7 +149,8 @@ class UC5_Listener(traci.StepListener, UC5_scenario):
                  name, 
                  vehicles, 
                  net_params,
-                 initial_config):
+                 initial_config,
+                 traffic_lights=TrafficLightParams()):
         
         self.connection = None
         self.downwardEdgeID=initial_config.additional_params["downwardEdgeID"]
