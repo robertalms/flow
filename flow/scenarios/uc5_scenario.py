@@ -10,6 +10,8 @@ except ImportError:
 
 import xml.etree.ElementTree as ET
 import os
+import traci
+import random
 from flow.scenarios import Scenario
 
 from flow.core.params import VehicleParams
@@ -19,38 +21,19 @@ from flow.core.params import EnvParams
 from flow.core.params import SumoParams
 from flow.core.params import TrafficLightParams
 
-UC5_dir = "/home/robert/flow/examples/UC5/"
-net_params = NetParams(
-      template={
-        # network geometry features
-        "net": os.path.join(UC5_dir, "UC5_1.net.xml"),
-        "vtype":[os.path.join(UC5_dir, "vTypesLV_OS.add.xml"),
-                 os.path.join(UC5_dir, "vTypesCVToC_OS.add.xml"),
-                 os.path.join(UC5_dir, "vTypesCAVToC_OS.add.xml")
-                ],
-        "flow" : os.path.join(UC5_dir, "routes_trafficMix_0_trafficDemand_1_driverBehaviour_OS_seed_0.xml")
-    }
-)
-# # Map from vehicle ID start-string to identify vehicles, that will perform a ToC in the scenario, 
-# #     to ToCLead time (in secs) for the corresponding vehicles 
-# initial_config = InitialConfig(
-#     edges_distribution=["e0"]
-# )
 tocInfos = ET.ElementTree(ET.Element("tocInfos"))
-downwardEdgeID = None
-distance = None
-# tocInfos=None
-ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
-debug=False
 
+ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
+ToCprobability = 1.0
+debug=False
+   
 class UC5_scenario(Scenario):
     
     def __init__(self,
                  name, 
                  vehicles, 
                  net_params,
-                 initial_config=InitialConfig(),
-                 traffic_lights=TrafficLightParams()):
+                 initial_config):
         
         self.downwardEdgeID=initial_config.additional_params["downwardEdgeID"]
         self.distance=initial_config.additional_params["distance"]
@@ -58,7 +41,7 @@ class UC5_scenario(Scenario):
         self.downwardToCPending = set()
         self.downwardToCRequested = set()
         
-        super().__init__(name, vehicles, net_params, initial_config,traffic_lights)
+        super().__init__(name, vehicles, net_params, initial_config)
         
     def getIdentifier(self,fullID, identifierList):
         #~ print ("getIdentifier(%s, %s)"%(fullID, identifierList))
@@ -160,3 +143,64 @@ class UC5_scenario(Scenario):
         print("  currentAwareness = %s" % currentAwareness)
         print("  currentSpeed = %s" % speed)
         print("  state = %s" % state)
+        
+class UC5_Listener(traci.StepListener, UC5_scenario):
+    def __init__(self, 
+                 name, 
+                 vehicles, 
+                 net_params,
+                 initial_config):
+        
+        self.connection = None
+        self.downwardEdgeID=initial_config.additional_params["downwardEdgeID"]
+        self.distance=initial_config.additional_params["distance"]
+        UC5_scenario.__init__(self,name, vehicles, net_params, initial_config)
+    
+    def get_connection(self, conn):
+        self.connection = conn
+    
+    def step(self, t):
+        if debug:
+            print('current sim step %s' % t)
+        arrivedVehs = [vehID for vehID in self.connection.simulation.getArrivedIDList() if self.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
+        self.downwardToCRequested.difference_update(arrivedVehs)
+        self.downwardToCPending.difference_update(arrivedVehs)
+        departedToCVehs = [vehID for vehID in self.connection.simulation.getDepartedIDList() if self.getIdentifier(vehID, ToC_lead_times.keys()) is not None]
+        noToC = []
+        for vehID in departedToCVehs:
+            # set ToC vehicle class to custom1
+            #~ print("Departed ToC vehicle '%s'"%vehID)
+            if (random.random() < ToCprobability):
+                # This vehicle has to perform a ToC
+                self.connection.vehicle.setVehicleClass(vehID, "custom1")
+            else:
+                # vehicle will manage situation witout a ToC
+                noToC.append(vehID)
+    
+        departedToCVehs = [vehID for vehID in departedToCVehs if vehID not in noToC]
+        self.downwardToCPending.update(departedToCVehs)
+    
+        # provide the ToCService at the specified cross section for informing the lane closure
+        newTORs = self.initToCs(self.downwardToCPending, self.downwardToCRequested, self.downwardEdgeID, self.distance, self.connection)
+        self.downwardToCPending.difference_update(self.downwardToCRequested)
+    
+        # keep book on performed ToCs and trigger best lanes update by resetting the route
+        downwardToCPerformed = set()
+        for vehID in self.downwardToCRequested:
+            if self.connection.vehicle.getVehicleClass(vehID) == "passenger":
+                if debug:
+                    print("Downward transition completed for vehicle '%s'" % vehID)
+                downwardToCPerformed.add(vehID)
+                self.connection.vehicle.updateBestLanes(vehID)
+        self.downwardToCRequested.difference_update(downwardToCPerformed)
+    
+        # add xml output
+        self.outputNoToC(t, noToC, tocInfos.getroot())
+        self.outputTORs(t, newTORs, tocInfos.getroot(),self.connection)
+        self.outputToCs(t, downwardToCPerformed, tocInfos.getroot(),self.connection)
+    
+        if debug:
+            print("downwardToCRequested=%s" % self.downwardToCRequested)
+            print("DownwardToCPending:%s" % str(sorted(self.downwardToCPending)))
+            print("Length of DownwardToCPending:%s" % str(len(self.downwardToCPending)))
+        return True        

@@ -1,11 +1,13 @@
 from flow.envs import Env
 import numpy as np
+import traci
 
 ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
 
 # define the environment class myEnv, and inherit properties from the base environment class Env
 class uc5_env(Env):
     def __init__(self, env_params, sim_params, scenario, simulator, stepListener):
+        traci.setConnectHook(scenario.get_connection)
         super().__init__(env_params, sim_params, scenario, simulator,stepListener)
 #         self.segments = add_env_params.get("controlled_segments", default)
 # 
