@@ -55,7 +55,7 @@ num_observed_segments = [("1", 1), ("2", 3)]
 
 ADDITIONAL_ENV_PARAMS = {
     "controlled_segments": controlled_segments,
-    "symmetric": False,
+    "symmetric": True,
     "observed_segments": num_observed_segments,
     "max_accel": 1,
     "max_decel": 1,
