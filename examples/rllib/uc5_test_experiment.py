@@ -50,8 +50,8 @@ from flow.core.params import InitialConfig
 from flow.core.params import EnvParams
 from flow.core.params import SumoParams
 ##################### Parameters for Scenario and Environment ######################################
-controlled_segments = [("1", 1, True), ("2", 2, True)]
-num_observed_segments = [("1", 1), ("2", 3)]
+controlled_segments = [("1", 1, True), ("2", 1, True)]
+num_observed_segments = [("1", 1), ("2", 1)]
 
 ADDITIONAL_ENV_PARAMS = {
     "controlled_segments": controlled_segments,
@@ -59,6 +59,7 @@ ADDITIONAL_ENV_PARAMS = {
     "observed_segments": num_observed_segments,
     "max_accel": 1,
     "max_decel": 1,
+    "stepListener": True,
 }
 
 env_params = EnvParams(additional_params=ADDITIONAL_ENV_PARAMS) 
@@ -129,7 +130,7 @@ flow_params = dict(
     # sumo-related parameters (see flow.core.params.SumoParams)
     sim=SumoParams(
         sim_step=0.1,
-        render=True,
+        render=True, #render False means 'sumo', True means 'sumo-gui'
         print_warnings=False,
         restart_instance=True,
     ),
@@ -140,6 +141,7 @@ flow_params = dict(
         sims_per_step=1,
         horizon=HORIZON,
         additional_params=ADDITIONAL_ENV_PARAMS,
+#         stepListener=True,
     ),
 
     # network-related parameters (see flow.core.params.NetParams and the
@@ -211,14 +213,14 @@ if __name__ == '__main__':
                             vehicles=vehicles
                             )
 
-    # create the environment
-    env = uc5_env(
-        env_params=env_params,
-        sim_params=sim_params,
-        scenario=myListener,
-        simulator='traci',
-        stepListener=True
-    )
+#     # create the environment
+#     env = uc5_env(
+#         env_params=env_params,
+#         sim_params=sim_params,
+#         scenario=myListener,
+#         simulator='traci',
+#         stepListener=True
+#     )
     
     
     alg_run, gym_name, config = setup_exps()

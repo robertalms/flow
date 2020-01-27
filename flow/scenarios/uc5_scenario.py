@@ -161,6 +161,7 @@ class UC5_Listener(traci.StepListener, UC5_scenario):
         self.connection = conn
     
     def step(self, t):
+        print("--------STEPLISTENER called: %s"%t)
         if debug:
             print('current sim step %s' % t)
         arrivedVehs = [vehID for vehID in self.connection.simulation.getArrivedIDList() if self.getIdentifier(vehID, ToC_lead_times.keys()) is not None]

@@ -160,7 +160,8 @@ class Env(gym.Env):
         kernel_api = self.k.simulation.start_simulation(
             scenario=self.k.scenario, sim_params=sim_params)
 
-        if stepListener == True:
+#         if stepListener == True:
+        if env_params.additional_params["stepListener"] == True:
             kernel_api.addStepListener(self.scenario)
         # pass the kernel api to the kernel and it's subclasses
         self.k.pass_api(kernel_api)
