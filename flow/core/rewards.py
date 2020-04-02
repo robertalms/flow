@@ -135,8 +135,8 @@ def min_delay(env):
 
     vel = vel[vel >= -1e-6]
     v_top = max(
-        env.k.scenario.speed_limit(edge)
-        for edge in env.k.scenario.get_edge_list())
+        env.k.network.speed_limit(edge)
+        for edge in env.k.network.get_edge_list())
     time_step = env.sim_step
 
     max_cost = time_step * sum(vel.shape)
@@ -164,9 +164,9 @@ def avg_delay_specified_vehicles(env, veh_ids):
         average delay
     """
     sum = 0
-    for edge in env.k.scenario.get_edge_list():
+    for edge in env.k.network.get_edge_list():
         for veh_id in env.k.vehicle.get_ids_by_edge(edge):
-            v_top = env.k.scenario.speed_limit(edge)
+            v_top = env.k.network.speed_limit(edge)
             sum += (v_top - env.k.vehicle.get_speed(veh_id)) / v_top
     time_step = env.sim_step
     try:
@@ -194,8 +194,8 @@ def min_delay_unscaled(env):
 
     vel = vel[vel >= -1e-6]
     v_top = max(
-        env.k.scenario.speed_limit(edge)
-        for edge in env.k.scenario.get_edge_list())
+        env.k.network.speed_limit(edge)
+        for edge in env.k.network.get_edge_list())
     time_step = env.sim_step
 
     # epsilon term (to deal with ZeroDivisionError exceptions)
@@ -237,7 +237,7 @@ def penalize_near_standstill(env, thresh=0.3, gain=1):
 
     This reward function is used to penalize vehicles below a
     specified threshold. This assists with discouraging RL from
-    gamifying a scenario, which can result in standstill behavior
+    gamifying a network, which can result in standstill behavior
     or similarly bad, near-zero velocities.
 
     Parameters
@@ -304,3 +304,29 @@ def punish_rl_lane_changes(env, penalty=1):
             total_lane_change_penalty -= penalty
 
     return total_lane_change_penalty
+
+
+def energy_consumption(env, gain=.001):
+    """Calculate power consumption of a vehicle.
+
+    Assumes vehicle is an average sized vehicle.
+    The power calculated here is the lower bound of the actual power consumed
+    by a vehicle.
+    """
+    power = 0
+
+    M = 1200  # mass of average sized vehicle (kg)
+    g = 9.81  # gravitational acceleration (m/s^2)
+    Cr = 0.005  # rolling resistance coefficient
+    Ca = 0.3  # aerodynamic drag coefficient
+    rho = 1.225  # air density (kg/m^3)
+    A = 2.6  # vehicle cross sectional area (m^2)
+    for veh_id in env.k.vehicle.get_ids():
+        speed = env.k.vehicle.get_speed(veh_id)
+        prev_speed = env.k.vehicle.get_previous_speed(veh_id)
+
+        accel = abs(speed - prev_speed) / env.sim_step
+
+        power += M * speed * accel + M * g * Cr * speed + 0.5 * rho * A * Ca * speed ** 3
+
+    return -gain * power

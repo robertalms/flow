@@ -18,6 +18,11 @@ from copy import deepcopy
 WHITE = (255, 255, 255)
 CYAN = (0, 255, 255)
 RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+STEPS = 10
+rdelta = 255 / STEPS
+# smoothly go from red to green as the speed increases
+color_bins = [[int(255 - rdelta * i), int(rdelta * i), 0] for i in range(STEPS + 1)]
 
 
 class TraCIVehicle(KernelVehicle):
@@ -68,12 +73,17 @@ class TraCIVehicle(KernelVehicle):
         # number of vehicles to exit the network for every time-step
         self._num_arrived = []
         self._arrived_ids = []
+        self._arrived_rl_ids = []
 
         # whether or not to automatically color vehicles
         try:
-            self._color_vehicles = sim_params.color_vehicles
+            self._color_by_speed = sim_params.color_by_speed
+            self._force_color_update = sim_params.force_color_update
         except AttributeError:
-            self._color_vehicles = False
+            self._force_color_update = False
+
+        # old speeds used to compute accelerations
+        self.previous_speeds = {}
 
     def initialize(self, vehicles):
         """Initialize vehicle state information.
@@ -120,14 +130,20 @@ class TraCIVehicle(KernelVehicle):
             specifies whether the simulator was reset in the last simulation
             step
         """
+        # copy over the previous speeds
+
         vehicle_obs = {}
         for veh_id in self.__ids:
+            self.previous_speeds[veh_id] = self.get_speed(veh_id)
             vehicle_obs[veh_id] = \
                 self.kernel_api.vehicle.getSubscriptionResults(veh_id)
         sim_obs = self.kernel_api.simulation.getSubscriptionResults()
 
+        arrived_rl_ids = []
         # remove exiting vehicles from the vehicles class
         for veh_id in sim_obs[tc.VAR_ARRIVED_VEHICLES_IDS]:
+            if veh_id in self.get_rl_ids():
+                arrived_rl_ids.append(veh_id)
             if veh_id in sim_obs[tc.VAR_TELEPORT_STARTING_VEHICLES_IDS]:
                 # this is meant to resolve the KeyError bug when there are
                 # collisions
@@ -137,13 +153,14 @@ class TraCIVehicle(KernelVehicle):
             # haven't been removed already
             if vehicle_obs[veh_id] is None:
                 vehicle_obs.pop(veh_id, None)
+        self._arrived_rl_ids.append(arrived_rl_ids)
 
         # add entering vehicles into the vehicles class
         for veh_id in sim_obs[tc.VAR_DEPARTED_VEHICLES_IDS]:
             if veh_id in self.get_ids() and vehicle_obs[veh_id] is not None:
                 # this occurs when a vehicle is actively being removed and
                 # placed again in the network to ensure a constant number of
-                # total vehicles (e.g. GreenWaveEnv). In this case, the vehicle
+                # total vehicles (e.g. TrafficLightGridEnv). In this case, the vehicle
                 # is already in the class; its state data just needs to be
                 # updated
                 pass
@@ -165,13 +182,14 @@ class TraCIVehicle(KernelVehicle):
             self._num_arrived.clear()
             self._departed_ids.clear()
             self._arrived_ids.clear()
+            self._arrived_rl_ids.clear()
 
             # add vehicles from a network template, if applicable
-            if hasattr(self.master_kernel.scenario.network,
+            if hasattr(self.master_kernel.network.network,
                        "template_vehicles"):
-                for veh_id in self.master_kernel.scenario.network.\
+                for veh_id in self.master_kernel.network.network.\
                         template_vehicles:
-                    vals = deepcopy(self.master_kernel.scenario.network.
+                    vals = deepcopy(self.master_kernel.network.network.
                                     template_vehicles[veh_id])
                     # a step is executed during initialization, so add this sim
                     # step to the departure time of vehicles
@@ -293,7 +311,6 @@ class TraCIVehicle(KernelVehicle):
         if accel_controller[0] == RLController:
             if veh_id not in self.__rl_ids:
                 self.__rl_ids.append(veh_id)
-                self.num_rl_vehicles += 1
         else:
             if veh_id not in self.__human_ids:
                 self.__human_ids.append(veh_id)
@@ -344,11 +361,16 @@ class TraCIVehicle(KernelVehicle):
 
         # make sure that the order of rl_ids is kept sorted
         self.__rl_ids.sort()
+        self.num_rl_vehicles = len(self.__rl_ids)
 
         # get the subscription results from the new vehicle
         new_obs = self.kernel_api.vehicle.getSubscriptionResults(veh_id)
 
         return new_obs
+
+    def reset(self):
+        """See parent class."""
+        self.previous_speeds = {}
 
     def remove(self, veh_id):
         """See parent class."""
@@ -487,12 +509,25 @@ class TraCIVehicle(KernelVehicle):
         else:
             return list()
 
+    def get_arrived_rl_ids(self):
+        """See parent class."""
+        if len(self._arrived_rl_ids) > 0:
+            return self._arrived_rl_ids[-1]
+        else:
+            return 0
+
     def get_departed_ids(self):
         """See parent class."""
         if len(self._departed_ids) > 0:
             return self._departed_ids[-1]
         else:
             return list()
+
+    def get_previous_speed(self, veh_id, error=-1001):
+        """See parent class."""
+        if isinstance(veh_id, (list, np.ndarray)):
+            return [self.get_previous_speed(vehID, error) for vehID in veh_id]
+        return self.previous_speeds.get(veh_id, 0)
 
     def get_speed(self, veh_id, error=-1001):
         """See parent class."""
@@ -659,14 +694,14 @@ class TraCIVehicle(KernelVehicle):
         leader velocity/follower velocity for all
         vehicles in the network.
         """
-        edge_list = self.master_kernel.scenario.get_edge_list()
-        junction_list = self.master_kernel.scenario.get_junction_list()
+        edge_list = self.master_kernel.network.get_edge_list()
+        junction_list = self.master_kernel.network.get_junction_list()
         tot_list = edge_list + junction_list
-        num_edges = (len(self.master_kernel.scenario.get_edge_list()) + len(
-            self.master_kernel.scenario.get_junction_list()))
+        num_edges = (len(self.master_kernel.network.get_edge_list()) + len(
+            self.master_kernel.network.get_junction_list()))
 
         # maximum number of lanes in the network
-        max_lanes = max([self.master_kernel.scenario.num_lanes(edge_id)
+        max_lanes = max([self.master_kernel.network.num_lanes(edge_id)
                          for edge_id in tot_list])
 
         # Key = edge id
@@ -754,7 +789,7 @@ class TraCIVehicle(KernelVehicle):
         this_pos = self.get_position(veh_id)
         this_edge = self.get_edge(veh_id)
         this_lane = self.get_lane(veh_id)
-        num_lanes = self.master_kernel.scenario.num_lanes(this_edge)
+        num_lanes = self.master_kernel.network.num_lanes(this_edge)
 
         # set default values for all output values
         headway = [1000] * num_lanes
@@ -821,17 +856,17 @@ class TraCIVehicle(KernelVehicle):
         pos = self.get_position(veh_id)
         edge = self.get_edge(veh_id)
 
-        headway = 1000  # env.scenario.length
+        headway = 1000  # env.network.length
         leader = ""
         add_length = 0  # length increment in headway
 
         for _ in range(num_edges):
             # break if there are no edge/lane pairs behind the current one
-            if len(self.master_kernel.scenario.next_edge(edge, lane)) == 0:
+            if len(self.master_kernel.network.next_edge(edge, lane)) == 0:
                 break
 
-            add_length += self.master_kernel.scenario.edge_length(edge)
-            edge, lane = self.master_kernel.scenario.next_edge(edge, lane)[0]
+            add_length += self.master_kernel.network.edge_length(edge)
+            edge, lane = self.master_kernel.network.next_edge(edge, lane)[0]
 
             try:
                 if len(edge_dict[edge][lane]) > 0:
@@ -866,17 +901,17 @@ class TraCIVehicle(KernelVehicle):
         pos = self.get_position(veh_id)
         edge = self.get_edge(veh_id)
 
-        tailway = 1000  # env.scenario.length
+        tailway = 1000  # env.network.length
         follower = ""
         add_length = 0  # length increment in headway
 
         for _ in range(num_edges):
             # break if there are no edge/lane pairs behind the current one
-            if len(self.master_kernel.scenario.prev_edge(edge, lane)) == 0:
+            if len(self.master_kernel.network.prev_edge(edge, lane)) == 0:
                 break
 
-            edge, lane = self.master_kernel.scenario.prev_edge(edge, lane)[0]
-            add_length += self.master_kernel.scenario.edge_length(edge)
+            edge, lane = self.master_kernel.network.prev_edge(edge, lane)[0]
+            add_length += self.master_kernel.network.edge_length(edge)
 
             try:
                 if len(edge_dict[edge][lane]) > 0:
@@ -930,7 +965,7 @@ class TraCIVehicle(KernelVehicle):
             this_edge = self.get_edge(veh_id)
             target_lane = min(
                 max(this_lane + direction[i], 0),
-                self.master_kernel.scenario.num_lanes(this_edge) - 1)
+                self.master_kernel.network.num_lanes(this_edge) - 1)
 
             # perform the requested lane action action in TraCI
             if target_lane != this_lane:
@@ -958,7 +993,7 @@ class TraCIVehicle(KernelVehicle):
         if self.get_edge(veh_id) == '':
             # occurs when a vehicle crashes is teleported for some other reason
             return 0.
-        return self.master_kernel.scenario.get_x(
+        return self.master_kernel.network.get_x(
             self.get_edge(veh_id), self.get_position(veh_id))
 
     def update_vehicle_colors(self):
@@ -971,8 +1006,10 @@ class TraCIVehicle(KernelVehicle):
         """
         for veh_id in self.get_rl_ids():
             try:
-                # color rl vehicles red
-                self.set_color(veh_id=veh_id, color=RED)
+                # If vehicle is already being colored via argument to vehicles.add(), don't re-color it.
+                if self._force_color_update or 'color' not in self.type_parameters[self.get_type(veh_id)]:
+                    # color rl vehicles red
+                    self.set_color(veh_id=veh_id, color=RED)
             except (FatalTraCIError, TraCIException) as e:
                 print('Error when updating rl vehicle colors:', e)
 
@@ -980,9 +1017,32 @@ class TraCIVehicle(KernelVehicle):
         for veh_id in self.get_human_ids():
             try:
                 color = CYAN if veh_id in self.get_observed_ids() else WHITE
-                self.set_color(veh_id=veh_id, color=color)
+                # If vehicle is already being colored via argument to vehicles.add(), don't re-color it.
+                if self._force_color_update or 'color' not in self.type_parameters[self.get_type(veh_id)]:
+                    self.set_color(veh_id=veh_id, color=color)
             except (FatalTraCIError, TraCIException) as e:
                 print('Error when updating human vehicle colors:', e)
+
+        for veh_id in self.get_ids():
+            try:
+                if 'av' in veh_id:
+                    color = RED
+                    # If vehicle is already being colored via argument to vehicles.add(), don't re-color it.
+                    if self._force_color_update or 'color' not in self.type_parameters[self.get_type(veh_id)]:
+                        self.set_color(veh_id=veh_id, color=color)
+            except (FatalTraCIError, TraCIException) as e:
+                print('Error when updating human vehicle colors:', e)
+
+        # color vehicles by speed if desired
+        if self._color_by_speed:
+            max_speed = self.master_kernel.network.max_speed()
+            speed_ranges = np.linspace(0, max_speed, STEPS)
+            for veh_id in self.get_ids():
+                veh_speed = self.get_speed(veh_id)
+                bin_index = np.digitize(veh_speed, speed_ranges)
+                # If vehicle is already being colored via argument to vehicles.add(), don't re-color it.
+                if self._force_color_update or 'color' not in self.type_parameters[self.get_type(veh_id)]:
+                    self.set_color(veh_id=veh_id, color=color_bins[bin_index])
 
         # clear the list of observed vehicles
         for veh_id in self.get_observed_ids():
@@ -1001,20 +1061,19 @@ class TraCIVehicle(KernelVehicle):
 
         The last term for sumo (transparency) is set to 255.
         """
-        if self._color_vehicles:
-            r, g, b = color
-            self.kernel_api.vehicle.setColor(
-                vehID=veh_id, color=(r, g, b, 255))
+        r, g, b = color
+        self.kernel_api.vehicle.setColor(
+            vehID=veh_id, color=(r, g, b, 255))
 
     def add(self, veh_id, type_id, edge, pos, lane, speed):
         """See parent class."""
-        if veh_id in self.master_kernel.scenario.rts:
+        if veh_id in self.master_kernel.network.rts:
             # If the vehicle has its own route, use that route. This is used in
             # the case of network templates.
             route_id = 'route{}_0'.format(veh_id)
         else:
-            num_routes = len(self.master_kernel.scenario.rts[edge])
-            frac = [val[1] for val in self.master_kernel.scenario.rts[edge]]
+            num_routes = len(self.master_kernel.network.rts[edge])
+            frac = [val[1] for val in self.master_kernel.network.rts[edge]]
             route_id = 'route{}_{}'.format(edge, np.random.choice(
                 [i for i in range(num_routes)], size=1, p=frac)[0])
 
