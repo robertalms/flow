@@ -19,7 +19,7 @@ import time
 import random
 import optparse
 import xml.etree.ElementTree as ET
-from flow.scenarios import Scenario
+from flow.networks import Network
 from flow.core.params import InitialConfig
 from flow.core.params import TrafficLightParams
 from flow.envs import Env
@@ -123,7 +123,7 @@ class myEnv(Env):
         # finally, we return the average of all these speeds as the reward
         return np.mean(speeds) 
 ###################################################################################################    
-class BaselineRunnerScenario(Scenario):
+class BaselineRunnerScenario(Network):
     
     def __init__(self,
                  downwardEdgeID, 

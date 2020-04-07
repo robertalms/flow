@@ -869,10 +869,10 @@ class Network(object):
                 decel=float(vtypes[typ]['decel']),
                 sigma=float(vtypes[typ]['sigma']),
                 length=float(vtypes[typ]['length']),
-                min_gap=float(vtypes[typ]['minGap']),
-                max_speed=float(vtypes[typ]['maxSpeed']),
+#                 min_gap=float(vtypes[typ]['minGap']),
+#                 max_speed=float(vtypes[typ]['maxSpeed']),
                 probability=float(vtypes[typ]['probability']),
-                speed_dev=float(vtypes[typ]['speedDev'])
+#                 speed_dev=float(vtypes[typ]['speedDev'])
             )
 
         return ret

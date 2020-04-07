@@ -145,23 +145,6 @@ class Experiment:
             for j in range(num_steps):
                 t0 = time.time()
                 state, reward, done, _ = self.env.step(rl_actions(state))
-<<<<<<< HEAD
-                if j>100:
-                    vel[j] = np.mean(
-                        self.env.k.vehicle.get_speed(self.env.k.vehicle.get_ids()))
-                    ret += reward
-                    ret_list.append(reward)
-    
-                    if done:
-                        break
-            rets.append(ret)
-            vels.append(vel)
-            mean_rets.append(np.mean(ret_list))
-            ret_lists.append(ret_list)
-            mean_vels.append(np.mean(vel))
-            std_vels.append(np.std(vel))
-            outflows.append(self.env.k.vehicle.get_outflow_rate(int(500)))
-=======
                 t1 = time.time()
                 times.append(1 / (t1 - t0))
 
@@ -185,7 +168,6 @@ class Experiment:
             for key in custom_vals.keys():
                 info_dict[key].append(np.mean(custom_vals[key]))
 
->>>>>>> master
             print("Round {0}, return: {1}".format(i, ret))
 
         # Print the averages/std for all variables in the info_dict.
