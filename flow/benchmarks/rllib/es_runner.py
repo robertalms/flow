@@ -19,7 +19,7 @@ from flow.utils.rllib import FlowParamsEncoder
 
 EXAMPLE_USAGE = """
 example usage:
-    python es_runner.py grid0
+    python es_runner.py --benchmark_name=grid0
 Here the arguments are:
 benchmark_name - name of the benchmark to run
 num_rollouts - number of rollouts to train across
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     create_env, env_name = make_create_env(params=flow_params, version=0)
 
     # initialize a ray instance
-    ray.init(redirect_output=True)
+    ray.init()
 
     alg_run = "ES"
 

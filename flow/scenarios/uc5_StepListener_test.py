@@ -14,8 +14,10 @@ import time
 import random
 import optparse
 import xml.etree.ElementTree as ET
-from flow.scenarios import Scenario
+
+#from flow.scenarios import Scenario
 from flow.scenarios import UC5_Listener
+from flow.networks import Network
 # the Experiment class is used for running simulations
 from flow.core.experiment import Experiment
 

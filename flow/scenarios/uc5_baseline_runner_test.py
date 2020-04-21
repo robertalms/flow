@@ -33,7 +33,7 @@ import xml.etree.ElementTree as ET
 #         "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')")
 
 import traci
-from flow.scenarios import Scenario
+from flow.networks import Network
 from flow.core.params import InitialConfig
 from flow.core.params import TrafficLightParams
 
@@ -48,7 +48,7 @@ ToCprobability = 1.0
 global options
 debug=False
 
-class BaselineRunnerScenario(Scenario):
+class BaselineRunnerScenario(Network):
     
     def __init__(self,
                  downwardEdgeID, 
@@ -258,7 +258,7 @@ from flow.envs import Env
 from flow.core.experiment import Experiment
 
 # the base scenario class
-from flow.scenarios import Scenario
+from flow.networks import Network
 
 # all other imports are standard
 from flow.core.params import VehicleParams

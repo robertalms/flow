@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 import os
 import traci
 import random
-from flow.scenarios import Scenario
+from flow.networks import Network
 
 from flow.core.params import VehicleParams
 from flow.core.params import NetParams
@@ -27,7 +27,7 @@ ToC_lead_times = {"CAVToC.":10.0, "CVToC.":0.0}
 ToCprobability = 1.0
 debug=False
    
-class UC5_scenario(Scenario):
+class UC5_scenario(Network):
     
     def __init__(self,
                  name, 
